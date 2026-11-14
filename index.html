@@ -9,19 +9,16 @@
   <link rel="stylesheet" href="reveal/dist/reset.css">
   <link rel="stylesheet" href="reveal/dist/reveal.css">
   <link rel="stylesheet" href="reveal/dist/theme/black.css">
-  <link rel="stylesheet" href="reveal/dist/plugin/highlight/monokai.css">
 
   <style>
     :root {
       --r-background-color: #121417;
       --r-main-font-size: 44px;
-      --r-heading1-size: 2.3em;
       --r-heading2-size: 1.6em;
       --r-link-color: #ff6b4a;
+      --r-link-color-hover: #ff9a82;
       --r-code-font: "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
       --accent: #ff6b4a;
-      --ice: #dff3ff;
-      --sea: #0d3b66;
       --ok: #4ade80;
       --muted: #8b9098;
       --card: #1c2026;
@@ -29,37 +26,26 @@
     }
 
     /* ---------- База ---------- */
-    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.015em; }
+    .reveal h2 { text-transform: none; letter-spacing: -0.015em; }
     .reveal .accent { color: var(--accent); }
     .reveal .muted { color: var(--muted); }
-    .reveal .small { font-size: 0.6em; }
-    .reveal .kicker {
-      font-size: 0.42em; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.4em; font-weight: 600;
-    }
-    .reveal .caption { font-size: 0.62em; color: var(--muted); margin-top: 0.8em; }
-    .reveal .big { font-size: 1.5em; font-weight: 700; line-height: 1.15; }
     .reveal .row { display: flex; align-items: center; justify-content: center; gap: 28px; }
     .reveal .arrow { color: var(--muted); font-size: 1.1em; }
-
-    /* Плавное появление снизу для обычных фрагментов */
     .reveal .fragment.rise { transform: translateY(18px); transition: all .45s ease; }
     .reveal .fragment.rise.visible { transform: none; }
-
-    /* Карточки */
     .reveal .card {
       background: var(--card); border: 1px solid var(--line); border-radius: 18px;
       padding: 26px 24px; box-sizing: border-box;
     }
     .reveal .card .label { font-size: 0.55em; margin-top: 16px; line-height: 1.25; }
     .reveal .card .sub { font-size: 0.42em; color: var(--muted); margin-top: 6px; }
-
-    /* Заглушка под картинку/фото */
+    /* Заглушка под картинку */
     .reveal .ph {
-      border: 2px dashed #3a414c; border-radius: 16px; color: var(--muted);
+      border: 2px dashed #3a414c; border-radius: 14px; color: var(--muted);
       display: flex; align-items: center; justify-content: center; text-align: center;
-      font-size: 0.45em; line-height: 1.4; box-sizing: border-box; padding: 16px;
+      font-size: 0.36em; line-height: 1.3; box-sizing: border-box; padding: 8px;
     }
+    .emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
     /* ---------- 1. Год назад / сегодня ---------- */
     .then-now { text-align: left; display: inline-block; }
@@ -76,7 +62,13 @@
     .reveal .row.start-story { gap: 60px; margin-top: 30px; }
     .story { width: 560px; text-align: left; font-size: 0.72em; }
     .story p { margin: 0 0 22px; }
-    .reveal .term.build { width: 480px; margin: 0; font-size: 0.5em; }
+    .term { text-align: left; font-family: var(--r-code-font); background: #0b0d10;
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+    .term .bar { background: #1c2026; padding: 10px 14px; display: flex; gap: 8px; }
+    .term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3a414c; display: block; }
+    .term .body { padding: 18px 24px; line-height: 1.6; }
+    .term .dim { color: var(--muted); }
+    .reveal .term.build { width: 480px; font-size: 0.5em; }
     .term .fail { color: #ff5f56; font-weight: 700; }
     .term .pass { color: var(--ok); font-weight: 700; }
 
@@ -97,116 +89,89 @@
     .mini-chat .me { background: var(--accent); color: #fff; margin-left: auto; }
     .mini-chat .ai { background: #2a2f37; }
 
-    /* ---------- 5. План Codex ---------- */
-    .term {
-      width: 760px; margin: 0 auto; text-align: left; font-family: var(--r-code-font);
-      font-size: 0.48em; background: #0b0d10; border: 1px solid var(--line); border-radius: 14px;
-      overflow: hidden;
-    }
-    .term .bar { background: #1c2026; padding: 10px 14px; display: flex; gap: 8px; }
-    .term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3a414c; display: block; }
-    .term .body { padding: 18px 24px; line-height: 1.6; }
-    .term .dim { color: var(--muted); }
-
-    /* ---------- 7. Айсберг ---------- */
-    .berg { position: relative; width: 1120px; height: 580px; margin: 0 auto; overflow: hidden;
-      border-radius: 20px; background: linear-gradient(#1b2a3a 0, #22374c 25%); }
+    /* ---------- 4. Айсберг: вода опускается по шагам ---------- */
+    .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
+      border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
     .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .berg .tip-label { position: absolute; left: 50%; top: 48px; transform: translateX(-50%);
-      font-size: 0.55em; font-weight: 700; color: #0b1a2a; background: var(--ice);
-      padding: 4px 14px; border-radius: 999px; }
-    .water {
-      position: absolute; left: 0; right: 0; top: 170px; bottom: 0;
-      background: linear-gradient(rgba(20, 70, 120, .96), rgba(6, 26, 48, .99));
-      border-top: 3px solid #7cc4ff; transition: transform 1.6s cubic-bezier(.6, .05, .25, 1);
-    }
-    .water.visible { transform: translateY(calc(100% - 36px)); }
-    .chip {
-      position: absolute; font-size: 0.42em; font-weight: 700; padding: 8px 16px;
-      border-radius: 12px; background: #fff; color: #111; box-shadow: 0 6px 18px rgba(0,0,0,.35);
-      opacity: 0; transform: scale(.85); transition: all .5s ease;
-    }
-    .chips.visible .chip { opacity: 1; transform: none; }
-    .chips.visible .chip:nth-child(2) { transition-delay: .9s; }
-    .chips.visible .chip:nth-child(3) { transition-delay: 1.0s; }
-    .chips.visible .chip:nth-child(4) { transition-delay: 1.1s; }
-    .chips.visible .chip:nth-child(5) { transition-delay: 1.2s; }
-    .chips.visible .chip:nth-child(6) { transition-delay: 1.3s; }
-    .chips.visible .chip:nth-child(7) { transition-delay: 1.4s; }
-    .chips.visible .chip:nth-child(1) { transition-delay: .8s; }
-    .chip .tag { display: block; font-size: 0.7em; font-weight: 400; color: #555; }
+    .berg .tip { position: absolute; left: 640px; top: 22px; display: flex; align-items: center; gap: 10px;
+      font-size: 0.5em; font-weight: 700; color: #fff; }
+    .berg .tip .emo { font-size: 1.8em; }
+    .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
+      background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
+      border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
+    .s-berg[data-step="1"] .water { transform: translateY(110px); }
+    .s-berg[data-step="2"] .water { transform: translateY(220px); }
+    .s-berg[data-step="3"] .water { transform: translateY(330px); }
+    .s-berg[data-step="4"] .water,
+    .s-berg[data-step="5"] .water { transform: translateY(440px); }
+    .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
+      background: #fff; color: #111; border-radius: 16px; text-align: center;
+      box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
+      opacity: 0; transform: translateY(14px) scale(.9); transition: all .5s ease .55s; }
+    .tile .emo { display: block; font-size: 2.3em; line-height: 1.2; }
+    .tile.wide { width: 230px; }
+    .tile.hot { background: var(--accent); color: #fff; }
+    .tile.visible { opacity: 1; transform: none; }
+    .loop { position: absolute; z-index: 2; right: 40px; top: 170px; width: 230px; height: 230px;
+      border-radius: 50%; border: 4px dashed var(--accent); display: flex; flex-direction: column;
+      align-items: center; justify-content: center; font-size: 0.42em; font-weight: 700; line-height: 1.3;
+      background: rgba(18, 20, 23, .85); opacity: 0; transform: rotate(-90deg) scale(.6); transition: all .7s ease; }
+    .loop .emo { font-size: 2.6em; }
+    .loop.visible { opacity: 1; transform: none; }
+    .loop.visible .emo { animation: spin 6s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ---------- 8. Шкала времени ---------- */
-    .timeline { width: 1080px; margin: 40px auto 0; text-align: left; }
-    .tl-bar { display: flex; height: 92px; border-radius: 14px; overflow: hidden; background: #1c2026; }
-    .tl-app { width: 16%; background: var(--ice); color: #0b1a2a; }
-    .tl-rest { width: 0; background: var(--accent); color: #fff; white-space: nowrap;
-      transition: width 1.6s cubic-bezier(.6, .05, .25, 1); }
-    .tl-rest.visible { width: 84%; }
-    .tl-bar > div { display: flex; align-items: center; padding: 0 18px; font-weight: 700; font-size: 0.55em;
-      box-sizing: border-box; overflow: hidden; }
-    .tl-bar > .tl-rest:not(.visible) { padding: 0; }
-    .tl-legend { display: flex; justify-content: space-between; margin-top: 14px; font-size: 0.45em; color: var(--muted); }
+    /* ---------- 5. Код дешёвый, внимание дорогое ---------- */
+    .reveal .row.att { gap: 50px; align-items: center; }
+    .words { width: 470px; text-align: left; }
+    .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
+    .words .w.dist { font-size: 1.5em; color: var(--accent); margin-top: 10px; }
+    .field { position: relative; width: 600px; height: 520px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 42px); gap: 8px; justify-content: center;
+      align-content: center; height: 100%; }
+    .app { width: 42px; height: 42px; border-radius: 11px; position: relative;
+      background: linear-gradient(135deg, #5b8cff, #9a5bff);
+      opacity: 0; transform: scale(.3); transition: opacity .3s ease, transform .3s ease, box-shadow .5s ease; }
+    .app::after { content: ""; position: absolute; inset: 13px; border-radius: 50%; background: rgba(255,255,255,.9); }
+    .app.lit { opacity: 1; transform: none; }
+    .s-att[data-step="1"] .app, .s-att[data-step="2"] .app, .s-att[data-step="3"] .app {
+      opacity: 1; transform: none; transition-delay: calc(var(--i) * 7ms); }
+    .s-att[data-step="2"] .app:not(.lit), .s-att[data-step="3"] .app:not(.lit) { opacity: .1; transition-delay: 0s; }
+    .s-att[data-step="2"] .app.lit, .s-att[data-step="3"] .app.lit {
+      transform: scale(1.5); z-index: 2; box-shadow: 0 0 0 4px var(--accent), 0 0 60px 20px rgba(255,107,74,.45); }
+    .eye { position: absolute; font-size: 54px; opacity: 0; transition: opacity .5s ease .4s; pointer-events: none; }
+    .s-att[data-step="2"] .eye, .s-att[data-step="3"] .eye { opacity: 1; }
+    .granny { position: absolute; left: -10px; bottom: -6px; z-index: 3; background: #fff; color: #111;
+      border-radius: 18px; padding: 10px 16px; font-size: 0.34em; font-weight: 700; text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5); opacity: 0; transform: translateY(20px); transition: all .5s ease .8s; }
+    .granny .emo { display: block; font-size: 2.4em; }
+    .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
 
-    /* ---------- 9. Финиш → старт ---------- */
-    .flag-wrap { display: flex; align-items: flex-end; justify-content: center; gap: 40px; }
-    .flag-wrap svg { width: 260px; height: 300px; }
-    .flag-wrap svg .cloth { transform-origin: 30px 40px; animation: wave 2.4s ease-in-out infinite; }
-    @keyframes wave { 50% { transform: skewY(-3deg) scaleX(.97); } }
-    .flipword { position: relative; width: 420px; height: 150px; }
-    .flipword span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-      font-size: 2.1em; font-weight: 800; letter-spacing: .04em; }
-    .flipword .finish { transition: all .6s ease; }
-    .flipword .start  { opacity: 0; transform: rotateX(90deg); transition: all .6s ease .35s; color: var(--ok); }
-    .flipword.visible .finish { opacity: 0; transform: rotateX(-90deg); }
-    .flipword.visible .start  { opacity: 1; transform: none; }
-    .pipeline { font-size: 0.55em; margin-bottom: 30px; }
-    .pipeline .ok { color: var(--ok); }
-
-    /* ---------- 10. 80% ---------- */
-    .loadbar { width: 980px; height: 64px; margin: 50px auto 16px; border-radius: 999px;
-      background: #1c2026; border: 2px solid var(--line); overflow: hidden; position: relative; }
-    .loadbar .fill { height: 100%; width: 0; border-radius: 999px;
-      background: repeating-linear-gradient(-45deg, #ff6b4a 0 22px, #ff8566 22px 44px); }
-    .present .loadbar .fill { animation: load 2.6s cubic-bezier(.2, .8, .3, 1) forwards, stuck 1.2s 2.8s ease-in-out infinite; }
-    @keyframes load { 0% { width: 0 } 60% { width: 72% } 100% { width: 80% } }
-    @keyframes stuck { 50% { filter: brightness(.65); } }
-    .pct { font-size: 1.6em; font-weight: 800; opacity: 0; }
-    .present .pct { animation: show .4s 2.4s forwards; }
-    @keyframes show { to { opacity: 1; } }
-    html.print-pdf .loadbar .fill { width: 80%; animation: none; }
-    html.print-pdf .pct { opacity: 1; animation: none; }
-
-    /* ---------- 11. Пёс ---------- */
-    .dog { position: relative; width: 420px; height: 300px; margin: 10px auto 0; }
-    .dog .d { position: absolute; left: 30px; bottom: 30px; font-size: 220px; line-height: 1; transform: scaleX(-1); }
-    .dog .l { position: absolute; right: 30px; bottom: 10px; font-size: 170px; line-height: 1; }
-
-    /* ---------- 12–14. Вывод ---------- */
-    .chain .card { width: 300px; min-height: 190px; display: flex; flex-direction: column; justify-content: center; }
-    .chain .card .v { font-size: 1.15em; font-weight: 800; }
-    .chain .card.hot { border-color: var(--accent); }
-    .formula { font-size: 1.05em; font-weight: 800; }
-    .formula .term-f { display: inline-block; padding: 6px 18px; border-radius: 14px; background: var(--card);
-      border: 1px solid var(--line); margin: 0 4px; }
-    .reveal .row.stats { gap: 110px; }
-    .stat .n { font-size: 3.4em; font-weight: 800; line-height: 1; }
-    .stat .t { font-size: 0.5em; color: var(--muted); }
-    .quote { font-size: 0.95em; line-height: 1.35; max-width: 1000px; margin: 40px auto 0; }
-
-    /* ---------- 15. Финал ---------- */
-    .photo { width: 560px; height: 320px; margin: 10px auto 0; }
-    /* Когда появится фото: замените .ph на <img src="img/anton.jpg" class="photo-img"> */
-    .reveal .row.links { gap: 24px; margin-top: 22px; }
-    .links .q { font-size: 0.9em; margin-left: 30px; }
-    .reveal img.photo-img { width: 560px; height: 320px; object-fit: cover; border-radius: 16px; margin: 10px auto 0; }
+    /* ---------- 6. Мои приложения ---------- */
+    .reveal .row.mine { gap: 40px; align-items: stretch; margin-top: 26px; }
+    .mine .col { width: 300px; display: flex; flex-direction: column; gap: 16px; }
+    .mine .col-title { font-size: 0.5em; font-weight: 700; color: var(--muted); }
+    .mine .col-title .emo { font-size: 1.3em; margin-right: 6px; }
+    .mine .col.stores-col { width: 420px; }
+    .app-card { display: flex; align-items: center; gap: 16px; text-align: left; padding: 16px; }
+    .app-card .icon { width: 84px; height: 84px; flex: none; border-radius: 20px; }
+    .app-card .qr { width: 84px; height: 84px; flex: none; margin-left: auto; }
+    .app-card b { font-size: 0.5em; display: block; }
+    .app-card small { font-size: 0.36em; color: var(--muted); }
+    .games { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .games .ph { height: 150px; }
+    .doc { text-align: left; font-size: 0.4em; line-height: 1.5; padding: 20px 22px; }
+    .doc .h { font-weight: 700; font-size: 1.15em; margin-bottom: 8px; }
+    .doc .sec { margin-top: 10px; font-weight: 700; }
+    .doc .ln { height: 9px; border-radius: 5px; background: #2f353e; margin: 7px 0; }
+    .reveal .q { font-size: 0.8em; margin-top: 30px; }
   </style>
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
 
-      <!-- ======================= 1. ВСТУПЛЕНИЕ ======================= -->
+      <!-- ======================= 1. ГОД НАЗАД / СЕГОДНЯ ======================= -->
       <section>
         <div class="then-now">
           <div class="tn">
@@ -223,16 +188,14 @@
           </div>
         </div>
         <aside class="notes">
-[НАИЗУСТЬ — первая фраза: ...]
-
 - Год назад я ещё не был в разработке (клик)
 - Сегодня у меня приложение в Google Play и приложение в App Store (клик — плашки)
 - Ссылки — в конце
         </aside>
       </section>
 
+      <!-- ======================= 2. СНАЧАЛА ПИСАЛ САМ ======================= -->
       <section>
-        <div class="kicker">01 · С чего начиналось</div>
         <h2>Сначала я писал код сам</h2>
         <div class="row start-story">
           <div class="story">
@@ -258,9 +221,8 @@
         </aside>
       </section>
 
-      <!-- ======================= 2. РЕШЕНИЯ — МОИ ======================= -->
+      <!-- ======================= 3. ЧАТ ПИШЕТ КОД, РЕШЕНИЯ — МОИ ======================= -->
       <section>
-        <div class="kicker">02 · Что стоит за кодом</div>
         <h2>Чат пишет код. <span class="accent">Решения — мои.</span></h2>
         <div class="row behind">
           <div class="card fragment rise">
@@ -299,193 +261,118 @@
           </div>
         </div>
         <aside class="notes">
-- Чат пишет код, но решения принимаю я — сам он их не принимает
+- Чат пишет код, но решения сам не принимает
 - За кодом стоит архитектура и продуктовый дизайн
 - Сначала понять, что ты хочешь — на словах, без кода, без экранов (клик)
 - Архитектура и продукт — твоё решение (клик)
-- Когда понял — лепить прототипы на заглушках: навигация, структура экранов,
-  экраны быстро прикидываю в HTML (клик)
+- Когда понял — прототипы на заглушках: навигация, структура экранов, HTML (клик)
 - И только потом код — это делает чат (клик)
         </aside>
       </section>
 
-      <!-- ======================= 3. АЙСБЕРГ (3:00) ======================= -->
-      <section>
-        <div class="kicker">03 · Айсберг</div>
+      <!-- ======================= 4. АЙСБЕРГ ======================= -->
+      <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
+      <section class="s-berg">
         <div class="berg">
-          <svg class="ice" viewBox="0 0 1120 580" aria-hidden="true">
-            <!-- верхушка -->
-            <path d="M505 170 L535 110 L560 70 L590 105 L612 95 L640 170 Z" fill="#eef8ff"/>
-            <path d="M560 70 L590 105 L575 170 L535 170 Z" fill="#cfe7f7"/>
-            <!-- подводная часть -->
-            <path d="M505 170 L640 170 L760 230 L870 330 L830 450 L700 540 L470 555 L320 470 L270 340 L360 240 Z" fill="#b9dcf2"/>
-            <path d="M640 170 L760 230 L870 330 L830 450 L700 540 L620 400 Z" fill="#9ccbe8"/>
+          <svg class="ice" viewBox="0 0 1180 640" aria-hidden="true">
+            <path d="M520 120 L552 70 L578 30 L610 64 L634 54 L664 120 Z" fill="#eef8ff"/>
+            <path d="M578 30 L610 64 L594 120 L552 120 Z" fill="#cfe7f7"/>
+            <path d="M520 120 L664 120 L800 190 L920 310 L890 470 L750 600 L480 620 L300 520 L250 360 L360 200 Z" fill="#b9dcf2"/>
+            <path d="M664 120 L800 190 L920 310 L890 470 L750 600 L640 420 Z" fill="#9ccbe8"/>
           </svg>
-          <div class="tip-label">Приложение</div>
+          <div class="tip"><span class="emo">📱</span>Приложение</div>
 
-          <div class="chips fragment custom" data-fragment-index="1">
-            <div class="chip" style="left: 90px;  top: 230px;">Сервер<span class="tag">синхронизация</span></div>
-            <div class="chip" style="left: 860px; top: 215px;">SDK<span class="tag">десятки зависимостей</span></div>
-            <div class="chip" style="left: 150px; top: 380px;">Аналитика<span class="tag">события, воронки</span></div>
-            <div class="chip" style="left: 900px; top: 360px;">Google<span class="tag">Firebase, Ads</span></div>
-            <div class="chip" style="left: 400px; top: 300px;">Meta<span class="tag">SDK, атрибуция</span></div>
-            <div class="chip" style="left: 620px; top: 300px;">MMP<span class="tag">AppsFlyer / Adjust</span></div>
-            <div class="chip" style="left: 440px; top: 460px; background: var(--accent); color: #fff;">Тест полного круга<span class="tag" style="color:#ffe1d9">каждое событие доходит</span></div>
-          </div>
+          <!-- слой 1: SDK и данные -->
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 250px; top: 132px;"><span class="emo">🧩</span>SDK</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 420px; top: 132px;"><span class="emo">📊</span>Аналитика</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 590px; top: 132px;"><span class="emo">🎯</span>Атрибуция</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 760px; top: 132px;"><span class="emo">🔗</span>MMP</div>
+          <!-- слой 2: реклама -->
+          <div class="tile fragment custom" data-fragment-index="2" style="left: 335px; top: 242px;"><span class="emo">📣</span>Google Ads</div>
+          <div class="tile fragment custom" data-fragment-index="2" style="left: 505px; top: 242px;"><span class="emo">📣</span>Meta Ads</div>
+          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Наливать трафик</div>
+          <!-- слой 3: тест полного круга -->
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 352px;"><span class="emo">🔁</span>Тест полного круга</div>
+          <!-- слой 4: юнит-экономика -->
+          <div class="tile wide hot fragment custom" data-fragment-index="4" style="left: 475px; top: 462px;"><span class="emo">💰</span>Юнит-экономика</div>
+          <!-- и всё по кругу -->
+          <div class="loop fragment custom" data-fragment-index="5"><span class="emo">🔄</span>налить<br>посчитать<br>поправить</div>
 
-          <!-- Вода: по клику опускается -->
-          <div class="water fragment custom" data-fragment-index="1"></div>
+          <div class="water"></div>
         </div>
-        <p class="caption fragment rise" data-fragment-index="2" style="font-size: 0.65em; color: #fff;">
-          Сделать из приложения <span class="accent">живой отслеживаемый продукт</span> — вот что долго
-        </p>
         <aside class="notes">
-- Над водой: само приложение собирается быстро
-- КЛИК — вода опускается
-- Под водой: синхронизация с сервером, SDK
-- Аналитика, сервисы Google, Meta, MMP
-- Тестировать полный круг: каждое событие должно реально доходить
-- КЛИК — превратить приложение в живой отслеживаемый продукт — вот что долго
-(логотипы вместо плашек — положить в img/ и заменить .chip на &lt;img&gt;)
+Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
+1. SDK, аналитика, атрибуция, MMP
+2. Реклама Google, Meta — наливать трафик
+3. Тест полного круга — каждое событие реально доходит
+4. Юнит-экономика — посчитать
+5. И по кругу: налить, посчитать, поправить
         </aside>
       </section>
 
-      <section>
-        <div class="kicker">03 · Айсберг</div>
-        <h2>Куда уходит время</h2>
-        <div class="timeline">
-          <div class="tl-bar">
-            <div class="tl-app">Приложение</div>
-            <div class="tl-rest fragment custom">Интеграции, SDK, аналитика, тесты</div>
+      <!-- ======================= 5. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <section class="s-att">
+        <div class="row att">
+          <div class="words">
+            <p class="w">Код <span class="accent">≈ 0</span></p>
+            <p class="w fragment rise" data-fragment-index="1">Приложений — миллионы</p>
+            <p class="w fragment rise" data-fragment-index="2">Внимание людей — <span class="accent">дорого</span></p>
+            <p class="w dist fragment rise" data-fragment-index="3">Дистрибуция</p>
           </div>
-          <div class="tl-legend">
-            <span>[~2 недели]</span>
-            <span class="fragment rise">[~2–3 месяца]</span>
-          </div>
-        </div>
-        <aside class="notes">
-- Шкала времени: «приложение» — маленький кусок
-- КЛИК — «интеграции и тесты» — большой
-- [свои реальные сроки вместо плейсхолдеров]
-        </aside>
-      </section>
-
-      <!-- ======================= 4. СТОР (1:00) ======================= -->
-      <section>
-        <div class="kicker">04 · Стор</div>
-        <div class="row pipeline">
-          <span>Подал <span class="ok">✓</span></span><span class="arrow">→</span>
-          <span>Ревью <span class="ok">✓</span></span><span class="arrow">→</span>
-          <span>Вышло <span class="ok">✓</span></span>
-        </div>
-        <div class="flag-wrap">
-          <svg viewBox="0 0 260 300" aria-hidden="true">
-            <defs>
-              <pattern id="check" width="40" height="40" patternUnits="userSpaceOnUse">
-                <rect width="40" height="40" fill="#f5f5f5"/>
-                <rect width="20" height="20" fill="#111"/><rect x="20" y="20" width="20" height="20" fill="#111"/>
-              </pattern>
-            </defs>
-            <rect x="22" y="30" width="10" height="265" rx="4" fill="#8b9098"/>
-            <g class="cloth"><path d="M32 40 Q110 20 240 48 L240 168 Q120 140 32 160 Z" fill="url(#check)" stroke="#dfe3e8" stroke-width="2"/></g>
-          </svg>
-          <div class="flipword fragment custom">
-            <span class="finish">ФИНИШ</span>
-            <span class="start">СТАРТ</span>
+          <div class="field">
+            <div class="grid" id="appgrid"></div>
+            <div class="eye emo" id="appeye">👁</div>
+            <div class="granny"><span class="emo">👵💻</span>бабушка из Бразилии + GPT</div>
           </div>
         </div>
-        <p class="caption fragment rise">Работа только начинается</p>
         <aside class="notes">
-- Подал, прошёл ревью, приложение вышло
-- КЛИК — финиш превращается в старт
-- И работа только начинается
+- Код стал почти бесплатным — вот твоя приложуха (одна иконка)
+- Клик: приложух миллионы, приложуху может написать любая бразильская бабушка с GPT
+- Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
+- Клик: это и называется дистрибуция
         </aside>
       </section>
 
-      <!-- ======================= 5. НЕ СДАВАЙСЯ (1:00) ======================= -->
+      <!-- ======================= 6. МОИ ПРИЛОЖЕНИЯ ======================= -->
       <section>
-        <div class="kicker">05 · Не сдавайся</div>
-        <h2>Большинство AI-проектов<br>умирают здесь</h2>
-        <div class="loadbar"><div class="fill"></div></div>
-        <div class="pct accent">80%</div>
-        <p class="fragment rise" style="font-size: 0.75em; margin-top: 20px;">Проверять · Повторять · <span class="accent">Доделывать</span></p>
-        <aside class="notes">
-- Полоска сама доезжает до 80% и застревает
-- Большинство AI-проектов умирают на 80%
-- КЛИК — проверять, повторять, доделывать до конца
-        </aside>
-      </section>
-
-      <!-- ======================= 6. ВЫВОД (1:30) ======================= -->
-      <section>
-        <div class="kicker">06 · Вывод</div>
-        <h2>Собрать продукт сейчас<br>может любой пёс</h2>
-        <!-- Можно заменить фото: <img src="img/dog.jpg"> -->
-        <div class="dog" role="img" aria-label="Собака за ноутбуком">
-          <span class="d">🐕</span><span class="l">💻</span>
+        <h2>Мои приложения</h2>
+        <div class="row mine">
+          <div class="col stores-col">
+            <div class="col-title"><span class="emo">📱</span>В сторах</div>
+            <div class="card app-card">
+              <div class="icon ph">иконка</div>
+              <div><b>[приложение 1]</b><small>Google Play</small></div>
+              <div class="qr ph">QR</div>
+            </div>
+            <div class="card app-card">
+              <div class="icon ph">иконка</div>
+              <div><b>[приложение 2]</b><small>App Store</small></div>
+              <div class="qr ph">QR</div>
+            </div>
+          </div>
+          <div class="col fragment rise">
+            <div class="col-title"><span class="emo">🎮</span>Игры</div>
+            <div class="games">
+              <div class="ph">[игра 1]</div>
+              <div class="ph">[игра 2]</div>
+            </div>
+          </div>
+          <div class="col fragment rise">
+            <div class="col-title"><span class="emo">📄</span>Дизайн-пейдж</div>
+            <div class="card doc">
+              <div class="h">[Игра] — design page</div>
+              <div class="sec">🔁 Core loop</div><div class="ln"></div><div class="ln" style="width:70%"></div>
+              <div class="sec">💎 Экономика</div><div class="ln"></div><div class="ln" style="width:55%"></div>
+              <div class="sec">🗺 Уровни</div><div class="ln" style="width:80%"></div>
+            </div>
+          </div>
         </div>
+        <p class="q fragment rise">Вопросы?</p>
         <aside class="notes">
-- Собрать продукт сейчас может любой пёс
-        </aside>
-      </section>
-
-      <section>
-        <div class="kicker">06 · Вывод</div>
-        <h2>Что подорожало</h2>
-        <div class="row chain" style="margin-top: 30px;">
-          <div class="card fragment rise"><div class="v">Код</div><div class="sub">почти бесплатный</div></div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card fragment rise"><div class="v">Миллионы</div><div class="sub">приложений в сторах</div></div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card hot fragment rise"><div class="v accent">Внимание</div><div class="sub">вот что теперь дорого</div></div>
-        </div>
-        <aside class="notes">
-- Код стал почти бесплатным (клик)
-- → в сторах миллионы приложений (клик)
-- Дорогое теперь — внимание пользователя (клик)
-        </aside>
-      </section>
-
-      <section>
-        <div class="kicker">06 · Вывод</div>
-        <h2>Дистрибуция =</h2>
-        <p class="formula">
-          <span class="term-f fragment rise">навык</span>
-          <span class="fragment rise">+ <span class="term-f">мозги</span></span>
-          <span class="fragment rise">+ <span class="term-f accent">деньги</span></span>
-        </p>
-        <aside class="notes">
-- Дистрибуция = навык + мозги + деньги (три клика)
-        </aside>
-      </section>
-
-      <section>
-        <div class="row stats">
-          <div class="stat"><div class="n">2</div><div class="t">стора</div></div>
-          <div class="stat"><div class="n accent">0</div><div class="t">дохода. Пока.</div></div>
-        </div>
-        <p class="quote fragment rise">«Я знаю, о чём говорю»</p>
-        <aside class="notes">
-[НАИЗУСТЬ — последняя фраза вывода:]
-«У меня приложение в двух сторах и пока ноль дохода — я знаю, о чём говорю»
-        </aside>
-      </section>
-
-      <!-- ======================= 7. ФИНАЛ (0:30) ======================= -->
-      <section>
-        <h2>Спасибо, <span class="accent">Антон</span>!</h2>
-        <!-- Фото: положите img/anton.jpg и замените div ниже на
-             <img src="img/anton.jpg" class="photo-img" alt="Максим и Антон"> -->
-        <div class="ph photo">[общее фото с Антоном<br>img/anton.jpg]</div>
-        <div class="row links">
-          <div class="store"><small>Google Play</small>[ссылка]</div>
-          <div class="store"><small>App Store</small>[ссылка]</div>
-          <div class="q">Вопросы?</div>
-        </div>
-        <aside class="notes">
-- Спасибо Антону, что взял в команду
-- Ссылки на приложения — на экране
-- Вопросы
+- Два приложения в сторах — ссылки/QR на экране
+- Клик: игровые приложения
+- Клик: дизайн-пейдж — держу в голове гейм-дизайн приложения
+- Клик: вопросы
         </aside>
       </section>
 
@@ -494,8 +381,35 @@
 
   <script src="reveal/dist/reveal.js"></script>
   <script src="reveal/dist/plugin/notes.js"></script>
-  <script src="reveal/dist/plugin/highlight.js"></script>
   <script>
+    // Сетка одинаковых приложений для слайда 5; одно из них — «моё».
+    (function () {
+      var grid = document.getElementById('appgrid');
+      var mine = 53;
+      for (var i = 0; i < 120; i++) {
+        var a = document.createElement('div');
+        a.className = 'app' + (i === mine ? ' lit' : '');
+        a.style.setProperty('--i', i);
+        grid.appendChild(a);
+      }
+    })();
+
+    function placeEye() {
+      var lit = document.querySelector('#appgrid .app.lit');
+      var eye = document.getElementById('appeye');
+      eye.style.left = (lit.offsetLeft + 52) + 'px';
+      eye.style.top = (lit.offsetTop - 64) + 'px';
+    }
+
+    // Номер шага внутри слайда → data-step. По нему CSS двигает воду, сетку и т.п.
+    function syncStep() {
+      var slide = Reveal.getCurrentSlide();
+      if (!slide) return;
+      var f = Reveal.getIndices().f;
+      slide.dataset.step = (typeof f === 'number' ? f + 1 : 0);
+      if (slide.classList.contains('s-att')) placeEye(); // размеры есть только у видимого слайда
+    }
+
     Reveal.initialize({
       width: 1280,
       height: 720,
@@ -504,8 +418,18 @@
       slideNumber: 'c/t',
       transition: 'fade',
       center: true,
-      plugins: [RevealNotes, RevealHighlight]
+      plugins: [RevealNotes]
+    }).then(function () {
+      if (document.documentElement.classList.contains('print-pdf')) {
+        // В PDF показываем финальное состояние каждого слайда.
+        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 5; });
+        document.querySelectorAll('.s-att').forEach(function (s) { s.dataset.step = 3; });
+        placeEye();
+      } else {
+        syncStep();
+      }
     });
+    ['slidechanged', 'fragmentshown', 'fragmenthidden'].forEach(function (e) { Reveal.on(e, syncStep); });
   </script>
 </body>
 </html>
