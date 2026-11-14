@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Код — это верхушка айсберга · Максим, 2Speak</title>
+  <title>Год назад я не был в разработке</title>
 
   <!-- Всё локально: никаких CDN. Шрифты темы встроены в CSS. -->
   <link rel="stylesheet" href="reveal/dist/reset.css">
@@ -61,15 +61,37 @@
       font-size: 0.45em; line-height: 1.4; box-sizing: border-box; padding: 16px;
     }
 
-    /* ---------- 2. Эволюция ---------- */
-    .evo .card { width: 330px; height: 330px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; }
-    .evo svg { width: 150px; height: 150px; }
-    .keycap {
-      display: inline-block; font-family: var(--r-code-font); font-size: 0.5em;
-      padding: 8px 14px; border-radius: 10px; background: #2a2f37;
-      border: 1px solid #3a414c; border-bottom-width: 4px; margin: 4px;
-    }
+    /* ---------- 1. Год назад / сегодня ---------- */
+    .then-now { text-align: left; display: inline-block; }
+    .then-now .tn { display: flex; align-items: baseline; gap: 36px; margin: 18px 0; }
+    .then-now .when { width: 300px; flex: none; font-size: 0.75em; color: var(--muted); text-align: right; }
+    .then-now .tn .accent { color: var(--accent); }
+    .then-now .what { font-size: 1.6em; font-weight: 700; line-height: 1.15; }
+    .reveal .row.stores { justify-content: flex-start; padding-left: 336px; margin-top: 18px; }
+    .store { padding: 14px 28px; border-radius: 16px; background: #000; border: 2px solid #3a414c;
+      font-size: 0.6em; font-weight: 700; text-align: left; line-height: 1.2; }
+    .store small { display: block; font-size: 0.6em; font-weight: 400; color: var(--muted); }
+
+    /* ---------- 2. Сначала писал сам ---------- */
+    .reveal .row.start-story { gap: 60px; margin-top: 30px; }
+    .story { width: 560px; text-align: left; font-size: 0.72em; }
+    .story p { margin: 0 0 22px; }
+    .reveal .term.build { width: 480px; margin: 0; font-size: 0.5em; }
+    .term .fail { color: #ff5f56; font-weight: 700; }
+    .term .pass { color: var(--ok); font-weight: 700; }
+
+    /* ---------- 3. Что стоит за кодом ---------- */
+    .reveal .row.behind { gap: 14px; margin-top: 34px; }
+    .behind .card { width: 250px; height: 300px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 20px 16px; }
+    .behind svg { width: 120px; height: 90px; }
+    .behind .card.code { border-color: var(--accent); }
+    .layers { width: 150px; font-size: 0.36em; display: flex; flex-direction: column; gap: 6px; }
+    .layers div { border: 2px solid #6b7380; border-radius: 8px; padding: 4px 0; color: #c9ced6; }
+    .mini-wire { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.5em; }
+    .mini-wire .scr { width: 52px; height: 92px; border: 2px dashed #6b7380; border-radius: 10px;
+      padding: 8px 6px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; }
+    .mini-wire .scr i { display: block; height: 10px; border: 1.5px dashed #6b7380; border-radius: 3px; }
     .mini-chat { width: 100%; font-size: 0.38em; text-align: left; }
     .mini-chat .b { padding: 8px 12px; border-radius: 12px; margin: 6px 0; max-width: 85%; }
     .mini-chat .me { background: var(--accent); color: #fff; margin-left: auto; }
@@ -85,29 +107,6 @@
     .term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3a414c; display: block; }
     .term .body { padding: 18px 24px; line-height: 1.6; }
     .term .dim { color: var(--muted); }
-    .steps { margin-top: 28px; font-size: 0.7em; }
-    .steps .step { padding: 10px 22px; border-radius: 999px; border: 2px solid var(--line); }
-    .steps .step.go { border-color: var(--accent); color: var(--accent); font-weight: 700; }
-
-    /* ---------- 6. Скелет ---------- */
-    .phone {
-      width: 230px; height: 430px; border: 3px solid #3a414c; border-radius: 34px;
-      padding: 30px 16px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px;
-      background: #171a1f;
-    }
-    .phone .blk { border-radius: 10px; transition: all .7s ease; border: 2px solid transparent; }
-    .phone .h  { height: 26px; background: #e8e8e8; width: 70%; }
-    .phone .img{ height: 120px; background: linear-gradient(135deg, #ff6b4a, #ffb35c); }
-    .phone .t1 { height: 16px; background: #9aa0a8; }
-    .phone .t2 { height: 16px; background: #9aa0a8; width: 80%; }
-    .phone .btn{ height: 44px; background: var(--accent); margin-top: auto; }
-    .phone .nav{ height: 34px; background: #2a2f37; }
-    /* По клику экран "распадается" в каркас */
-    .wire.visible .blk { background: transparent !important; border: 2px dashed #6b7380; }
-    .navmap { display: grid; grid-template-columns: auto auto auto; gap: 18px 14px;
-      align-items: center; font-size: 0.42em; }
-    .navmap .node { border: 2px solid var(--accent); border-radius: 12px; padding: 10px 14px; }
-    .navmap .node.alt { border-color: #6b7380; color: #c9ced6; }
 
     /* ---------- 7. Айсберг ---------- */
     .berg { position: relative; width: 1120px; height: 580px; margin: 0 auto; overflow: hidden;
@@ -196,141 +195,117 @@
     .quote { font-size: 0.95em; line-height: 1.35; max-width: 1000px; margin: 40px auto 0; }
 
     /* ---------- 15. Финал ---------- */
-    .photo { width: 640px; height: 380px; margin: 10px auto 0; }
+    .photo { width: 560px; height: 320px; margin: 10px auto 0; }
     /* Когда появится фото: замените .ph на <img src="img/anton.jpg" class="photo-img"> */
-    .reveal img.photo-img { width: 640px; height: 380px; object-fit: cover; border-radius: 16px; margin: 10px auto 0; }
+    .reveal .row.links { gap: 24px; margin-top: 22px; }
+    .links .q { font-size: 0.9em; margin-left: 30px; }
+    .reveal img.photo-img { width: 560px; height: 320px; object-fit: cover; border-radius: 16px; margin: 10px auto 0; }
   </style>
 </head>
 <body>
   <div class="reveal">
     <div class="slides">
 
-      <!-- ======================= 0. ТИТУЛ ======================= -->
+      <!-- ======================= 1. ВСТУПЛЕНИЕ ======================= -->
       <section>
-        <h1>Код — это<br>верхушка <span class="accent">айсберга</span></h1>
-        <p class="muted">Максим · 2Speak</p>
-        <aside class="notes">
-          Повесить, пока зал рассаживается. Первая фраза — со следующего слайда.
-        </aside>
-      </section>
-
-      <!-- ======================= 1. ВСТУПЛЕНИЕ (1:30) ======================= -->
-      <section>
-        <div class="kicker">01 · Как изменилась разработка</div>
-        <h2>Год назад я не писал код</h2>
-        <div class="row evo" style="margin-top: 30px;">
-          <!-- Картинки можно заменить своими: <img src="img/...png"> внутри .card -->
-          <div class="card fragment rise">
-            <svg viewBox="0 0 120 120" aria-hidden="true">
-              <path d="M10 28 Q35 18 60 30 Q85 18 110 28 V96 Q85 86 60 98 Q35 86 10 96 Z" fill="#2a2f37" stroke="#dfe3e8" stroke-width="3"/>
-              <path d="M60 30 V98" stroke="#dfe3e8" stroke-width="3"/>
-              <path d="M22 44 H48 M22 56 H48 M22 68 H44 M72 44 H98 M72 56 H98 M72 68 H92" stroke="#8b9098" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <div class="label">Учебник</div>
-            <div class="sub">сел учить код сам</div>
+        <div class="then-now">
+          <div class="tn">
+            <span class="when">Год назад</span>
+            <span class="what">я не был в разработке</span>
           </div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card fragment rise">
-            <div>
-              <span class="keycap">Ctrl</span>+<span class="keycap">C</span><br>
-              <span class="keycap">Ctrl</span>+<span class="keycap">V</span>
-            </div>
-            <div class="label">Копипаст из ChatGPT</div>
-            <div class="sub">кривые проекты</div>
+          <div class="tn fragment rise">
+            <span class="when accent">Сегодня</span>
+            <span class="what">мои приложения в сторах</span>
           </div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card fragment rise">
-            <div class="mini-chat">
-              <div class="b me">Сделай экран урока</div>
-              <div class="b ai">План: 3 шага. Делаю?</div>
-              <div class="b me">Делай</div>
-            </div>
-            <div class="label">Говорю — Codex делает</div>
-            <div class="sub">иногда даже без редактора</div>
+          <div class="row stores fragment rise">
+            <div class="store"><small>Android</small>Google Play</div>
+            <div class="store"><small>iOS</small>App Store</div>
           </div>
         </div>
         <aside class="notes">
 [НАИЗУСТЬ — первая фраза: ...]
 
-- Год назад не работал в разработке, сел учить код (клик: учебник)
-- Пока учил, появились AI-шки
-- Этап 1: Ctrl+C / Ctrl+V из ChatGPT, кривые проекты (клик)
-- Этап 2: революция — просто говоришь, и всё делается, ни строчки кода,
-  иногда даже редактор не открываю (клик)
+- Год назад я ещё не был в разработке (клик)
+- Сегодня у меня приложение в Google Play и приложение в App Store (клик — плашки)
+- Ссылки — в конце
         </aside>
       </section>
 
       <section>
-        <div class="kicker">01 · Как изменилась разработка</div>
-        <h2>Чат пишет код.<br><span class="accent">Решения — мои.</span></h2>
-        <p class="fragment rise caption" style="font-size: 0.7em;">Разбираться в архитектуре всё равно надо</p>
-        <aside class="notes">
-- Но: решения принимаю я, а не чат за меня
-- Минимально разбираться в архитектуре всё равно надо (клик)
-        </aside>
-      </section>
-
-      <!-- ======================= 2. КОД БОЛЬШЕ НЕ ПРОБЛЕМА (1:30) ======================= -->
-      <section>
-        <div class="kicker">02 · Код больше не проблема</div>
-        <p class="big">Codex решает задачи<br>уровня <span class="accent">сеньора</span></p>
-        <aside class="notes">
-- Codex сейчас решает задачи уровня сеньора
-- [пример задачи, которую он закрыл сам]
-        </aside>
-      </section>
-
-      <section>
-        <div class="kicker">02 · Код больше не проблема</div>
-        <h2>Сначала план</h2>
-        <!-- Можно заменить реальным скриншотом: <img src="img/codex-plan.png"> -->
-        <div class="term">
-          <div class="bar"><i></i><i></i><i></i></div>
-          <div class="body">
-            <span class="dim">codex ›</span> План<br>
-            1. Экран урока: Route + ViewModel<br>
-            2. Модель упражнения в domain<br>
-            3. Тесты на правила<br>
-            <span class="dim">Начать? [y/n]</span>
+        <div class="kicker">01 · С чего начиналось</div>
+        <h2>Сначала я писал код сам</h2>
+        <div class="row start-story">
+          <div class="story">
+            <p class="fragment rise" data-fragment-index="1">Учил архитектуру с&nbsp;утра до&nbsp;ночи</p>
+            <p class="fragment rise" data-fragment-index="2">GPT помогал, но&nbsp;проекты не&nbsp;собирались</p>
+            <p class="fragment rise" data-fragment-index="3">Потом что-то щёлкнуло</p>
+          </div>
+          <div class="term build">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="body">
+              <span class="dim">$ ./gradlew build</span><br>
+              <span class="fragment rise fail" data-fragment-index="2">✗ BUILD FAILED</span><br>
+              <span class="fragment rise fail" data-fragment-index="2">✗ BUILD FAILED</span><br>
+              <span class="fragment rise pass" data-fragment-index="3">✓ BUILD SUCCESSFUL</span>
+            </div>
           </div>
         </div>
-        <div class="row steps">
-          <div class="step fragment rise">Читаю</div>
+        <aside class="notes">
+Короткая вводная история, не задерживаться.
+- Писал код сам, изучал архитектуру с утра до ночи (клик)
+- GPT помогал, но проекты не билдились (клик)
+- Потом что-то произошло — и начали билдиться (клик)
+        </aside>
+      </section>
+
+      <!-- ======================= 2. РЕШЕНИЯ — МОИ ======================= -->
+      <section>
+        <div class="kicker">02 · Что стоит за кодом</div>
+        <h2>Чат пишет код. <span class="accent">Решения — мои.</span></h2>
+        <div class="row behind">
+          <div class="card fragment rise">
+            <svg viewBox="0 0 120 90" aria-hidden="true">
+              <path d="M10 10 H110 V62 H46 L28 80 V62 H10 Z" fill="none" stroke="#dfe3e8" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M24 26 H96 M24 38 H88 M24 50 H70" stroke="#8b9098" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="label">Понять, что я&nbsp;хочу</div>
+            <div class="sub">словами: без кода и&nbsp;экранов</div>
+          </div>
           <div class="arrow fragment rise">→</div>
-          <div class="step fragment rise">Проверяю</div>
+          <div class="card fragment rise">
+            <div class="layers">
+              <div>Экраны</div><div>Логика</div><div>Данные</div>
+            </div>
+            <div class="label">Архитектура и&nbsp;продукт</div>
+            <div class="sub">это решаю я, не&nbsp;чат</div>
+          </div>
           <div class="arrow fragment rise">→</div>
-          <div class="step go fragment rise">«Делай, тварь»</div>
-        </div>
-        <aside class="notes">
-- Главное открытие: сначала читаю его план и проверяю
-- Только потом «делай, тварь» (три клика)
-- [скрин реального плана → img/codex-plan.png]
-        </aside>
-      </section>
-
-      <section>
-        <div class="kicker">02 · Код больше не проблема</div>
-        <h2>Начинать со скелета</h2>
-        <div class="row" style="gap: 70px; margin-top: 10px;">
-          <div class="phone fragment custom wire" data-fragment-index="1">
-            <div class="blk h"></div>
-            <div class="blk img"></div>
-            <div class="blk t1"></div>
-            <div class="blk t2"></div>
-            <div class="blk btn"></div>
-            <div class="blk nav"></div>
+          <div class="card fragment rise">
+            <div class="mini-wire">
+              <div class="scr"><i></i><i></i><i></i></div><span>→</span>
+              <div class="scr"><i></i><i></i></div>
+            </div>
+            <div class="label">Скелет на&nbsp;заглушках</div>
+            <div class="sub">навигация, HTML-прототипы</div>
           </div>
-          <div class="navmap fragment rise" data-fragment-index="2">
-            <div class="node">Home</div><div class="arrow">→</div><div class="node">Урок</div>
-            <div></div><div></div><div class="arrow" style="text-align:center">↓</div>
-            <div class="node alt">Настройки</div><div class="arrow">←</div><div class="node">Результат</div>
+          <div class="arrow fragment rise">→</div>
+          <div class="card code fragment rise">
+            <div class="mini-chat">
+              <div class="b me">Делай</div>
+              <div class="b ai">Готово ✓</div>
+            </div>
+            <div class="label">Код</div>
+            <div class="sub">а вот это уже чат</div>
           </div>
         </div>
-        <p class="caption fragment rise" data-fragment-index="3">Экраны — быстрые HTML-прототипы</p>
         <aside class="notes">
-- Начинать со скелета: навигация и структура экранов
-- Клик: экран распадается в каркас. Клик: карта навигации
-- Экраны быстро прикидываю в HTML-прототипах (клик)
+- Чат пишет код, но решения принимаю я — сам он их не принимает
+- За кодом стоит архитектура и продуктовый дизайн
+- Сначала понять, что ты хочешь — на словах, без кода, без экранов (клик)
+- Архитектура и продукт — твоё решение (клик)
+- Когда понял — лепить прототипы на заглушках: навигация, структура экранов,
+  экраны быстро прикидываю в HTML (клик)
+- И только потом код — это делает чат (клик)
         </aside>
       </section>
 
@@ -502,9 +477,14 @@
         <!-- Фото: положите img/anton.jpg и замените div ниже на
              <img src="img/anton.jpg" class="photo-img" alt="Максим и Антон"> -->
         <div class="ph photo">[общее фото с Антоном<br>img/anton.jpg]</div>
-        <p style="margin-top: 26px;">Вопросы?</p>
+        <div class="row links">
+          <div class="store"><small>Google Play</small>[ссылка]</div>
+          <div class="store"><small>App Store</small>[ссылка]</div>
+          <div class="q">Вопросы?</div>
+        </div>
         <aside class="notes">
 - Спасибо Антону, что взял в команду
+- Ссылки на приложения — на экране
 - Вопросы
         </aside>
       </section>
