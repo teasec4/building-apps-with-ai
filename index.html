@@ -75,27 +75,25 @@
     .apps .app-row b { display: block; font-size: 0.85em; line-height: 1.1; }
 
     /* ---------- 3. Как я делаю приложение ---------- */
-    .proc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 1220px;
-      margin: 30px auto 0; text-align: left; }
+    .proc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; width: 1220px;
+      margin: 26px auto 0; text-align: left; }
     .proc .phase-name { font-size: 0.6em; font-weight: 700; color: var(--muted); text-transform: uppercase;
       letter-spacing: .04em; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 3px solid var(--line); }
-    .proc .phase:last-child .phase-name { color: var(--accent); border-color: var(--accent); }
-    .proc .step { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    .proc .step { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      min-height: 64px; box-sizing: border-box;
       background: var(--card); border: 2px solid var(--line); border-radius: 12px;
-      padding: 14px 16px; margin-bottom: 12px; font-size: 0.52em; font-weight: 600; line-height: 1.2;
-      transition: opacity .5s ease, border-color .5s ease; }
-    .proc .step.again { background: none; border-style: dashed; color: var(--muted); }
-    .proc .ai { flex: none; font-size: 0.75em; font-weight: 700; color: var(--accent);
-      border: 2px solid var(--accent); border-radius: 999px; padding: 1px 8px;
-      opacity: 0; transition: opacity .5s ease; }
-    .s-proc[data-step="5"] .ai { opacity: 1; }
-    .s-proc[data-step="5"] .step.has-ai { border-color: var(--accent); }
-    .s-proc[data-step="5"] .step:not(.has-ai) { opacity: .4; }
-    .reveal .proc-caption { font-size: 0.62em; font-weight: 700; margin-top: 22px; }
-
-    .berg-q { position: absolute; z-index: 3; left: 44px; top: 34px; font-size: 0.9em; font-weight: 700;
-      opacity: 0; transition: opacity .5s ease; }
-    .berg-q.visible { opacity: 1; }
+      padding: 10px 14px; margin-bottom: 10px; font-size: 0.48em; font-weight: 600; line-height: 1.2;
+      transition: border-color .5s ease; }
+    .proc .who-set { flex: none; display: flex; gap: 6px; }
+    .proc .who { display: inline-flex; align-items: center; justify-content: center; height: 32px;
+      min-width: 32px; padding: 0 8px; box-sizing: border-box; border-radius: 999px;
+      font-size: 0.8em; font-weight: 700; transition: opacity .5s ease; }
+    .proc .who.me { background: #dfe3e8; }
+    .proc .who.ai { color: var(--accent); border: 2px solid var(--accent); }
+    /* Последний клик: подсвечен только ИИ */
+    .s-proc:has(.proc-caption.visible) .who.me { opacity: .15; }
+    .s-proc:has(.proc-caption.visible) .step { border-color: var(--accent); }
+    .reveal .proc-caption { font-size: 0.66em; font-weight: 700; margin-top: 18px; }
 
     /* ---------- 4. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
@@ -117,12 +115,6 @@
       transform: scale(1.5); z-index: 2; box-shadow: 0 0 0 4px var(--accent), 0 0 60px 20px rgba(255,107,74,.45); }
     .eye { position: absolute; font-size: 54px; opacity: 0; transition: opacity .5s ease .4s; pointer-events: none; }
     .s-att[data-step="2"] .eye, .s-att[data-step="3"] .eye { opacity: 1; }
-    .granny { position: absolute; left: -10px; bottom: -6px; z-index: 3; background: #fff; color: #111;
-      border-radius: 18px; padding: 10px 16px; font-size: 0.34em; font-weight: 700; text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.5); opacity: 0; transform: translateY(20px); transition: all .5s ease .8s; }
-    .granny .emo { display: block; font-size: 2.4em; }
-    .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
-
 
     /* ---------- 5. Айсберг: вода опускается по шагам ---------- */
     .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
@@ -134,14 +126,16 @@
     .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
       background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
       border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
-    .s-berg[data-step="1"] .water { transform: translateY(160px); }
-    .s-berg[data-step="2"] .water { transform: translateY(310px); }
-    .s-berg[data-step="3"] .water { transform: translateY(470px); }
+    .s-berg[data-step="1"] .water { transform: translateY(140px); }
+    .s-berg[data-step="2"] .water { transform: translateY(255px); }
+    .s-berg[data-step="3"] .water { transform: translateY(370px); }
+    .s-berg[data-step="4"] .water { transform: translateY(480px); }
     .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
       background: #fff; color: #111; border-radius: 16px; text-align: center;
       box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
       opacity: 0; transform: translateY(14px) scale(.9); transition: all .5s ease .55s; }
     .tile .emo { display: block; font-size: 2.3em; line-height: 1.2; }
+    .tile.mid { width: 200px; }
     .tile.wide { width: 230px; }
     .tile.hot { background: var(--accent); color: #fff; }
     .tile.visible { opacity: 1; transform: none; }
@@ -208,45 +202,47 @@
       </section>
 
       <!-- ======================= 3. КАК Я ДЕЛАЮ ПРИЛОЖЕНИЕ ======================= -->
+      <!-- Шаг появляется вместе с первым исполнителем, следующий клик — второй. Последний клик — подсвечен только ИИ. -->
       <section class="s-proc">
         <h2>Как я делаю приложение</h2>
         <div class="proc">
-          <div class="phase fragment rise" data-fragment-index="1">
+          <div class="phase">
             <div class="phase-name">Продукт</div>
-            <div class="step"><span>Поиск идеи</span></div>
-            <div class="step has-ai"><span>Флоу и&nbsp;заглушки экранов</span><span class="ai">АИ</span></div>
-            <div class="step"><span>Модели данных</span></div>
+            <div class="step fragment" data-fragment-index="1"><span>Поиск идеи, анализ рынка</span><span class="who-set"><span data-fragment-index="1" class="fragment who me" title="я">👤</span><span data-fragment-index="2" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="3"><span>Флоу приложения, прототипы экранов</span><span class="who-set"><span data-fragment-index="3" class="fragment who me" title="я">👤</span><span data-fragment-index="4" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="5"><span>Модели данных</span><span class="who-set"><span data-fragment-index="5" class="fragment who me" title="я">👤</span><span data-fragment-index="6" class="fragment who ai">ИИ</span></span></div>
           </div>
-          <div class="phase fragment rise" data-fragment-index="2">
+          <div class="phase">
             <div class="phase-name">Сборка</div>
-            <div class="step has-ai"><span>GPT собирает код</span><span class="ai">АИ</span></div>
-            <div class="step has-ai"><span>SDK: Google и&nbsp;другие</span><span class="ai">АИ</span></div>
-            <div class="step has-ai"><span>Интеграция с&nbsp;сервером</span><span class="ai">АИ</span></div>
-            <div class="step"><span>Тест</span></div>
+            <div class="step fragment" data-fragment-index="7"><span>Код</span><span class="who-set"><span data-fragment-index="7" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="8"><span>Интеграция с&nbsp;сервером</span><span class="who-set"><span data-fragment-index="8" class="fragment who ai">ИИ</span><span data-fragment-index="9" class="fragment who me" title="я">👤</span></span></div>
+            <div class="step fragment" data-fragment-index="10"><span>Интеграция SDK</span><span class="who-set"><span data-fragment-index="10" class="fragment who ai">ИИ</span><span data-fragment-index="11" class="fragment who me" title="я">👤</span></span></div>
+            <div class="step fragment" data-fragment-index="12"><span>Тестирование</span><span class="who-set"><span data-fragment-index="12" class="fragment who me" title="я">👤</span><span data-fragment-index="13" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="14"><span>Локализация</span><span class="who-set"><span data-fragment-index="14" class="fragment who ai">ИИ</span></span></div>
           </div>
-          <div class="phase fragment rise" data-fragment-index="3">
+          <div class="phase">
             <div class="phase-name">Запуск</div>
-            <div class="step"><span>Все кабинеты: связать и&nbsp;проверить</span></div>
-            <div class="step has-ai"><span>Выход в&nbsp;стор</span><span class="ai">АИ</span></div>
-          </div>
-          <div class="phase fragment rise" data-fragment-index="4">
-            <div class="phase-name">Рост</div>
-            <div class="step"><span>Трафик</span></div>
-            <div class="step has-ai"><span>Правки приложения</span><span class="ai">АИ</span></div>
-            <div class="step"><span>Правки дистрибуции</span></div>
-            <div class="step"><span>Юнит-экономика: в&nbsp;плюс?</span></div>
-            <div class="step again"><span>↺ и&nbsp;по&nbsp;кругу</span></div>
+            <div class="step fragment" data-fragment-index="15"><span>Контент для сторов и&nbsp;описание</span><span class="who-set"><span data-fragment-index="15" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="16"><span>Связать все кабинеты</span><span class="who-set"><span data-fragment-index="16" class="fragment who me" title="я">👤</span><span data-fragment-index="17" class="fragment who ai">ИИ</span></span></div>
           </div>
         </div>
-        <p class="proc-caption fragment rise" data-fragment-index="5"><span class="accent">АИ</span> — почти всё до&nbsp;стора. Дальше — трафик и&nbsp;деньги.</p>
+        <p class="proc-caption fragment rise" data-fragment-index="18">Всё это может сделать <span class="accent">ИИ</span></p>
         <aside class="notes">
-Клик за кликом — этапы:
-1. Продукт: ищу идею, строю флоу и заглушки экранов, описываю модели данных
-2. Сборка: GPT собирает код, интегрирую SDK — гугловские и прочие, сервер, тестирую
-3. Запуск: во всех кабинетах всё связать и проверить, выход в стор
-4. Рост: пробую трафик, правлю приложение и дистрибуцию, считаю юнит-экономику, чтобы было в плюс. И по кругу
-5. Клик: где здесь АИ — подсвечивается. До стора АИ делает почти всё. После стора — трафик, дистрибуция, деньги — это уже я.
-Отсюда переход: код стал почти бесплатным…
+Каждый шаг появляется с первым исполнителем, следующий клик — второй. 👤 — я.
+ПРОДУКТ
+- Поиск идеи, анализ рынка: я → ИИ
+- Флоу приложения, прототипы экранов: я → ИИ
+- Модели данных: я → ИИ
+СБОРКА
+- Код: ИИ
+- Интеграция с сервером: ИИ → я
+- Интеграция SDK: ИИ → я
+- Тестирование: я → ИИ
+- Локализация: ИИ
+ЗАПУСК
+- Контент для сторов и описание: ИИ
+- Связать все кабинеты: я → ИИ
+Последний клик: человечки гаснут, остаётся ИИ — «Всё это может сделать ИИ».
         </aside>
       </section>
 
@@ -262,12 +258,11 @@
           <div class="field">
             <div class="grid" id="appgrid"></div>
             <div class="eye emo" id="appeye">👁</div>
-            <div class="granny"><span class="emo">👵💻</span>бабушка из Бразилии + GPT</div>
           </div>
         </div>
         <aside class="notes">
 - Код стал почти бесплатным — вот твоя приложуха (одна иконка)
-- Клик: приложух миллионы, приложуху может написать любая бразильская бабушка с GPT
+- Клик: приложух миллионы — приложуху теперь может написать кто угодно
 - Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
 - Клик: это и называется дистрибуция
         </aside>
@@ -285,28 +280,31 @@
           </svg>
           <div class="tip"><span class="emo">📱</span>Приложение</div>
 
-          <!-- слой 1: техника -->
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 250px; top: 150px;"><span class="emo">🧩</span>SDK</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 420px; top: 150px;"><span class="emo">🔌</span>Интеграции</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 590px; top: 150px;"><span class="emo">🔗</span>MMP</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 760px; top: 150px;"><span class="emo">📣</span>Реклама</div>
-          <!-- слой 2: юнит-экономика -->
-          <div class="tile wide fragment custom" data-fragment-index="2" style="left: 475px; top: 305px;"><span class="emo">💰</span>Юнит-экономика</div>
+          <!-- слой 1: что встраиваем в приложение -->
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 166px; top: 140px;"><span class="emo">📊</span>Аналитика событий</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 382px; top: 140px;"><span class="emo">🎯</span>Атрибуция (MMP)</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 598px; top: 140px;"><span class="emo">💳</span>Подписки и&nbsp;покупки</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 814px; top: 140px;"><span class="emo">📺</span>Реклама в&nbsp;приложении</div>
+          <!-- слой 2: закупка трафика -->
+          <div class="tile mid fragment custom" data-fragment-index="2" style="left: 274px; top: 255px;"><span class="emo">📣</span>Google Ads</div>
+          <div class="tile mid fragment custom" data-fragment-index="2" style="left: 490px; top: 255px;"><span class="emo">📣</span>Meta Ads</div>
+          <div class="tile mid fragment custom" data-fragment-index="2" style="left: 706px; top: 255px;"><span class="emo">🎬</span>Креативы</div>
+          <!-- слой 3: юнит-экономика -->
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 370px;"><span class="emo">💰</span>Юнит-экономика</div>
           <!-- дно: дистрибуция и удержание -->
-          <div class="tile wide hot fragment custom" data-fragment-index="3" style="left: 235px; top: 460px;"><span class="emo">📡</span>Дистрибуция</div>
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 460px;"><span class="emo">🧲</span>Удержание</div>
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
+          <div class="tile wide hot fragment custom" data-fragment-index="4" style="left: 235px; top: 485px;"><span class="emo">📡</span>Дистрибуция</div>
+          <div class="tile wide fragment custom" data-fragment-index="4" style="left: 475px; top: 485px;"><span class="emo">🧲</span>Удержание</div>
+          <div class="tile wide fragment custom" data-fragment-index="4" style="left: 715px; top: 485px;"><span class="emo">↩️</span>Возвращение</div>
 
           <div class="water"></div>
-          <div class="berg-q fragment custom" data-fragment-index="4">Вопросы?</div>
         </div>
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
-1. SDK, интеграции, MMP, реклама
-2. Юнит-экономика
-3. На самом дне: дистрибуция, удержание, возвращение пользователей
+1. Что встраиваем в приложение: аналитика событий, атрибуция (MMP), подписки и покупки, реклама в приложении
+2. Закупка трафика: Google Ads, Meta Ads, креативы
+3. Юнит-экономика
+4. На самом дне: дистрибуция, удержание, возвращение пользователей
 Код — только верхушка. Самое тяжёлое — на дне.
-4. Клик: «Вопросы?»
         </aside>
       </section>
 
@@ -357,7 +355,6 @@
       if (document.documentElement.classList.contains('print-pdf')) {
         // В PDF показываем финальное состояние каждого слайда.
         document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 4; });
-        document.querySelectorAll('.s-proc').forEach(function (s) { s.dataset.step = 5; });
         document.querySelectorAll('.s-att').forEach(function (s) { s.dataset.step = 3; });
         placeEye();
       } else {
