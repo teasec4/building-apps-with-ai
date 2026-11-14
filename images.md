@@ -2,13 +2,16 @@
 
 ## Что подготовить (реальные картинки — главное)
 
-Кладите в `img/` под этими именами — подставлю в слайды.
+Картинки для слайда «Мои приложения» найдены в локальных проектах и добавлены в `img/`.
 
 | Слайд | Файл | Что |
 |-------|------|-----|
 | 2. Мои приложения | `img/app-2speak.png` | Иконка 2Speak (квадрат, 512×512+) |
 | 2. Мои приложения | `img/app-cryptolife.png` | Иконка Crypto Life |
-| 2. Мои приложения | `img/site-2speak.png` | Скриншот сайта 2Speak (широкий, примерно 16:9) |
+
+Источники:
+- 2Speak: `/Users/yg_kovalev/swift-project/ai-chat-2/ai-chat-2/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png`.
+- Crypto Life: `/Users/yg_kovalev/development/eduapps_nanny_games_cryptowars/apps/cryptolife/store/icon/icon.png`.
 
 Скриншоты этапов разработки больше не нужны. `img/cryptolife-figcraft.png` и `img/cryptolife-screen-flow.png` сейчас не используются.
 

@@ -71,11 +71,8 @@
     .apps .store-col .store-badge { margin: 0 auto 6px; }
     .apps .app-row { display: flex; align-items: center; gap: 24px; padding: 22px 26px; text-align: left; }
     .apps .app-row .icon { width: 120px; height: 120px; flex: none; border-radius: 22px; }
+    .reveal .apps img.icon { display: block; margin: 0; max-width: none; max-height: none; object-fit: cover; }
     .apps .app-row b { display: block; font-size: 0.85em; line-height: 1.1; }
-    .apps .model { display: inline-block; margin-top: 10px; font-size: 0.46em; font-weight: 700;
-      padding: 4px 14px; border-radius: 999px; border: 2px solid var(--line); color: #c9ced6; }
-    .apps .model.paid { border-color: var(--accent); color: var(--accent); }
-    .apps .site { flex: 1; min-height: 164px; }
 
     /* ---------- 3. Как я делаю приложение ---------- */
     .proc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 1220px;
@@ -187,26 +184,25 @@
           <div class="store-col">
             <div class="store-badge google-play"><img src="img/google-play-badge.png" alt="Google Play"></div>
             <div class="card app-row">
-              <div class="icon ph">иконка</div>
-              <div><b>2Speak</b><span class="model paid">Подписка</span></div>
+              <img class="icon" src="img/app-2speak.png" alt="Иконка 2Speak">
+              <div><b>2Speak</b></div>
             </div>
             <div class="card app-row">
-              <div class="icon ph">иконка</div>
-              <div><b>Crypto Life</b><span class="model">Реклама</span></div>
+              <img class="icon" src="img/app-cryptolife.png" alt="Иконка Crypto Life">
+              <div><b>Crypto Life</b></div>
             </div>
           </div>
           <div class="store-col fragment rise">
             <div class="store-badge"><img src="img/app-store-badge-ru.svg" alt="Загрузите в App Store"></div>
             <div class="card app-row">
-              <div class="icon ph">иконка</div>
-              <div><b>2Speak</b><span class="model paid">Подписка</span></div>
+              <img class="icon" src="img/app-2speak.png" alt="Иконка 2Speak">
+              <div><b>2Speak</b></div>
             </div>
-            <div class="site ph">скриншот сайта 2Speak</div>
           </div>
         </div>
         <aside class="notes">
 - Android: 2Speak — подписка, Crypto Life — игра, зарабатывает на рекламе
-- Клик: iOS — 2Speak, вот сайт
+- Клик: iOS — 2Speak
 - Как я их делаю — дальше
         </aside>
       </section>

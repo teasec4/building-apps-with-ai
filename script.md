@@ -27,7 +27,7 @@
 
 ## 2. Мои приложения — 1:00
 
-Слева Google Play: 2Speak (подписка), Crypto Life (игра, реклама). Клик: справа App Store — 2Speak и скриншот сайта.
+Слева Google Play: 2Speak (подписка), Crypto Life (игра, реклама). Клик: справа App Store — 2Speak.
 
 - 2Speak — подписочная история, есть на Android и iOS
 - Crypto Life — свежая игра, зарабатывает на рекламе
