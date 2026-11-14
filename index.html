@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Как делается приложение: что делаю я, что делает АИ</title>
+  <title>2025 — закупаю товар в Китае / 2026 — мои приложения в сторах</title>
 
   <!-- Всё локально: никаких CDN. Шрифты темы встроены в CSS. -->
   <link rel="stylesheet" href="reveal/dist/reset.css">
@@ -65,56 +65,42 @@
     .store-badge.google-play { width: 214.86px; }
     .reveal .store-badge.google-play img { height: 95.24px; }
 
-    /* ---------- 2–5. Как делается приложение: что делаю я / что делает АИ ---------- */
-    .comparison { position: relative; width: 1160px; height: 440px; margin: 0 auto; text-align: left; }
-    .reveal ol.flow { list-style: none; margin: 0 0 34px; padding: 0; display: flex; gap: 10px;
-      font-size: 0.42em; font-weight: 700; }
-    .reveal ol.flow li { flex: 1; padding-top: 12px; border-top: 4px solid var(--line); color: #4b525d; }
-    .reveal ol.flow li.done { border-color: #6b7380; color: var(--muted); }
-    .reveal ol.flow li.on { border-color: var(--accent); color: var(--accent); }
-    .comparison-head, .comparison-pair { display: grid; grid-template-columns: 1fr 32px 1fr;
-      column-gap: 28px; align-items: center; }
-    .comparison-head { min-height: 72px; box-sizing: border-box;
-      padding-bottom: 16px; border-bottom: 1px solid var(--line); }
-    .reveal .comparison-head h2 { margin: 0; font-size: 1.05em; line-height: 1.2;
-      text-transform: uppercase; }
-    .comparison-head .ai-heading { grid-column: 3; color: var(--accent); }
-    .comparison-pair { min-height: 240px; box-sizing: border-box;
-      padding: 36px 0; border-bottom: 1px solid var(--line); }
-    .comparison-action { font-size: 0.95em; font-weight: 600; line-height: 1.2; }
-    .comparison-detail { font-size: 0.66em; line-height: 1.25; color: #b1b7c0; margin-top: 14px; }
-    .comparison-pair .arrow { font-size: 0.8em; text-align: center; }
-    .comparison-ai .comparison-action { font-size: 1.1em; }
-    /* Скриншот-пример: по клику накрывает слайд почти целиком */
-    .reveal .shot { position: absolute; top: -130px; bottom: -130px; left: -50px; right: -50px;
-      display: flex; align-items: center; justify-content: center;
-      background: #0b0d10; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
-    .reveal .shot img { display: block; max-width: 100%; max-height: 100%; margin: 0; object-fit: contain; }
-    .reveal .shot.ph { font-size: 0.6em; background: #15181c; padding: 60px; }
+    /* ---------- 2. Мои приложения ---------- */
+    .reveal .row.apps { gap: 40px; align-items: stretch; margin-top: 34px; }
+    .apps .store-col { width: 560px; display: flex; flex-direction: column; gap: 16px; }
+    .apps .store-col .store-badge { margin: 0 auto 6px; }
+    .apps .app-row { display: flex; align-items: center; gap: 24px; padding: 22px 26px; text-align: left; }
+    .apps .app-row .icon { width: 120px; height: 120px; flex: none; border-radius: 22px; }
+    .apps .app-row b { display: block; font-size: 0.85em; line-height: 1.1; }
+    .apps .model { display: inline-block; margin-top: 10px; font-size: 0.46em; font-weight: 700;
+      padding: 4px 14px; border-radius: 999px; border: 2px solid var(--line); color: #c9ced6; }
+    .apps .model.paid { border-color: var(--accent); color: var(--accent); }
+    .apps .site { flex: 1; min-height: 164px; }
 
-    /* ---------- 6. Айсберг: вода опускается по шагам ---------- */
-    .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
-      border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
-    .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .berg .tip { position: absolute; left: 640px; top: 22px; display: flex; align-items: center; gap: 10px;
-      font-size: 0.5em; font-weight: 700; color: #fff; }
-    .berg .tip .emo { font-size: 1.8em; }
-    .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
-      background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
-      border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
-    .s-berg[data-step="1"] .water { transform: translateY(160px); }
-    .s-berg[data-step="2"] .water { transform: translateY(310px); }
-    .s-berg[data-step="3"] .water { transform: translateY(470px); }
-    .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
-      background: #fff; color: #111; border-radius: 16px; text-align: center;
-      box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
-      opacity: 0; transform: translateY(14px) scale(.9); transition: all .5s ease .55s; }
-    .tile .emo { display: block; font-size: 2.3em; line-height: 1.2; }
-    .tile.wide { width: 230px; }
-    .tile.hot { background: var(--accent); color: #fff; }
-    .tile.visible { opacity: 1; transform: none; }
+    /* ---------- 3. Как я делаю приложение ---------- */
+    .proc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 1220px;
+      margin: 30px auto 0; text-align: left; }
+    .proc .phase-name { font-size: 0.6em; font-weight: 700; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .04em; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 3px solid var(--line); }
+    .proc .phase:last-child .phase-name { color: var(--accent); border-color: var(--accent); }
+    .proc .step { display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: var(--card); border: 2px solid var(--line); border-radius: 12px;
+      padding: 14px 16px; margin-bottom: 12px; font-size: 0.52em; font-weight: 600; line-height: 1.2;
+      transition: opacity .5s ease, border-color .5s ease; }
+    .proc .step.again { background: none; border-style: dashed; color: var(--muted); }
+    .proc .ai { flex: none; font-size: 0.75em; font-weight: 700; color: var(--accent);
+      border: 2px solid var(--accent); border-radius: 999px; padding: 1px 8px;
+      opacity: 0; transition: opacity .5s ease; }
+    .s-proc[data-step="5"] .ai { opacity: 1; }
+    .s-proc[data-step="5"] .step.has-ai { border-color: var(--accent); }
+    .s-proc[data-step="5"] .step:not(.has-ai) { opacity: .4; }
+    .reveal .proc-caption { font-size: 0.62em; font-weight: 700; margin-top: 22px; }
 
-    /* ---------- 7. Код дешёвый, внимание дорогое ---------- */
+    .berg-q { position: absolute; z-index: 3; left: 44px; top: 34px; font-size: 0.9em; font-weight: 700;
+      opacity: 0; transition: opacity .5s ease; }
+    .berg-q.visible { opacity: 1; }
+
+    /* ---------- 4. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
     .words { width: 470px; text-align: left; }
     .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
@@ -140,17 +126,29 @@
     .granny .emo { display: block; font-size: 2.4em; }
     .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
 
-    /* ---------- 8. Мои приложения ---------- */
-    .reveal .row.mine { gap: 28px; align-items: stretch; margin-top: 40px; }
-    .mine .app-tile { width: 360px; display: flex; flex-direction: column; align-items: center;
-      gap: 14px; padding: 30px 24px; }
-    .mine .app-tile .icon { width: 132px; height: 132px; border-radius: 30px; }
-    .mine .app-tile b { font-size: 0.7em; }
-    .mine .model { font-size: 0.42em; font-weight: 700; padding: 6px 16px; border-radius: 999px;
-      border: 2px solid var(--line); color: #c9ced6; }
-    .mine .model.paid { border-color: var(--accent); color: var(--accent); }
-    .mine .app-tile .qr { width: 132px; height: 132px; margin-top: 6px; }
-    .reveal .q { font-size: 0.8em; margin-top: 30px; }
+
+    /* ---------- 5. Айсберг: вода опускается по шагам ---------- */
+    .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
+      border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
+    .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .berg .tip { position: absolute; left: 640px; top: 22px; display: flex; align-items: center; gap: 10px;
+      font-size: 0.5em; font-weight: 700; color: #fff; }
+    .berg .tip .emo { font-size: 1.8em; }
+    .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
+      background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
+      border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
+    .s-berg[data-step="1"] .water { transform: translateY(160px); }
+    .s-berg[data-step="2"] .water { transform: translateY(310px); }
+    .s-berg[data-step="3"] .water { transform: translateY(470px); }
+    .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
+      background: #fff; color: #111; border-radius: 16px; text-align: center;
+      box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
+      opacity: 0; transform: translateY(14px) scale(.9); transition: all .5s ease .55s; }
+    .tile .emo { display: block; font-size: 2.3em; line-height: 1.2; }
+    .tile.wide { width: 230px; }
+    .tile.hot { background: var(--accent); color: #fff; }
+    .tile.visible { opacity: 1; transform: none; }
+
   </style>
 </head>
 <body>
@@ -182,127 +180,104 @@
         </aside>
       </section>
 
-      <!-- ======================= 2. ЭТАП 1: ИДЕЯ И КОД ======================= -->
-      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
-        <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="on">Идея и код</li><li>Экраны</li><li>Стор</li><li>Рост ↺</li></ol>
-          <div class="comparison-head" data-id="comparison-header">
-            <h2>Что делаю я</h2>
-            <h2 class="ai-heading">Что делает АИ</h2>
-          </div>
-          <div class="comparison-pair" data-id="comparison-idea">
-            <div class="comparison-human">
-              <div class="comparison-action">Придумываю идею и&nbsp;модель данных</div>
-              <div class="comparison-detail">Описываю дата-флоу, принимаю архитектурные решения</div>
+      <!-- ======================= 2. МОИ ПРИЛОЖЕНИЯ ======================= -->
+      <section>
+        <h2>Мои приложения</h2>
+        <div class="row apps">
+          <div class="store-col">
+            <div class="store-badge google-play"><img src="img/google-play-badge.png" alt="Google Play"></div>
+            <div class="card app-row">
+              <div class="icon ph">иконка</div>
+              <div><b>2Speak</b><span class="model paid">Подписка</span></div>
             </div>
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="comparison-ai">
-              <div class="comparison-action">Пишет код</div>
-              <div class="comparison-detail">По&nbsp;готовым правилам архитектуры</div>
+            <div class="card app-row">
+              <div class="icon ph">иконка</div>
+              <div><b>Crypto Life</b><span class="model">Реклама</span></div>
             </div>
           </div>
-          <div class="shot ph fragment">Скриншот: Xcode / Android Studio + чат, где АИ пишет код</div>
+          <div class="store-col fragment rise">
+            <div class="store-badge"><img src="img/app-store-badge-ru.svg" alt="Загрузите в App Store"></div>
+            <div class="card app-row">
+              <div class="icon ph">иконка</div>
+              <div><b>2Speak</b><span class="model paid">Подписка</span></div>
+            </div>
+            <div class="site ph">скриншот сайта 2Speak</div>
+          </div>
         </div>
         <aside class="notes">
-Шапка «Что делаю я / Что делает АИ» остаётся на месте на всех четырёх этапах. Сверху — где мы во флоу.
-- Сначала идея — словами, без кода и экранов
-- Дальше модель данных и дата-флоу: что храним, откуда и куда течёт
-- Архитектурные решения — мои. Код — АИ
-Совет: не просить «напиши приложение». Архитектуру отдать готовыми правилами (скиллами) — тогда проект собирается.
-Клик — скриншот: так это выглядит.
+- Android: 2Speak — подписка, Crypto Life — игра, зарабатывает на рекламе
+- Клик: iOS — 2Speak, вот сайт
+- Как я их делаю — дальше
         </aside>
       </section>
 
-      <!-- ======================= 3. ЭТАП 2: ЭКРАНЫ ======================= -->
-      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
-        <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="on">Экраны</li><li>Стор</li><li>Рост ↺</li></ol>
-          <div class="comparison-head" data-id="comparison-header">
-            <h2>Что делаю я</h2>
-            <h2 class="ai-heading">Что делает АИ</h2>
+      <!-- ======================= 3. КАК Я ДЕЛАЮ ПРИЛОЖЕНИЕ ======================= -->
+      <section class="s-proc">
+        <h2>Как я делаю приложение</h2>
+        <div class="proc">
+          <div class="phase fragment rise" data-fragment-index="1">
+            <div class="phase-name">Продукт</div>
+            <div class="step"><span>Поиск идеи</span></div>
+            <div class="step has-ai"><span>Флоу и&nbsp;заглушки экранов</span><span class="ai">АИ</span></div>
+            <div class="step"><span>Модели данных</span></div>
           </div>
-          <div class="comparison-pair" data-id="comparison-product">
-            <div class="comparison-human">
-              <div class="comparison-action">Определяю продуктовый флоу</div>
-              <div class="comparison-detail">Выбираю и&nbsp;корректирую варианты</div>
-            </div>
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="comparison-ai">
-              <div class="comparison-action">Прототипирует экраны</div>
-              <div class="comparison-detail">Раскладывает всё приложение в&nbsp;редакторе</div>
-            </div>
+          <div class="phase fragment rise" data-fragment-index="2">
+            <div class="phase-name">Сборка</div>
+            <div class="step has-ai"><span>GPT собирает код</span><span class="ai">АИ</span></div>
+            <div class="step has-ai"><span>SDK: Google и&nbsp;другие</span><span class="ai">АИ</span></div>
+            <div class="step has-ai"><span>Интеграция с&nbsp;сервером</span><span class="ai">АИ</span></div>
+            <div class="step"><span>Тест</span></div>
           </div>
-          <div class="shot fragment"><img src="img/cryptolife-figcraft.png" alt="Crypto Life — карта экранов в FigCraft"></div>
+          <div class="phase fragment rise" data-fragment-index="3">
+            <div class="phase-name">Запуск</div>
+            <div class="step"><span>Все кабинеты: связать и&nbsp;проверить</span></div>
+            <div class="step has-ai"><span>Выход в&nbsp;стор</span><span class="ai">АИ</span></div>
+          </div>
+          <div class="phase fragment rise" data-fragment-index="4">
+            <div class="phase-name">Рост</div>
+            <div class="step"><span>Трафик</span></div>
+            <div class="step has-ai"><span>Правки приложения</span><span class="ai">АИ</span></div>
+            <div class="step"><span>Правки дистрибуции</span></div>
+            <div class="step"><span>Юнит-экономика: в&nbsp;плюс?</span></div>
+            <div class="step again"><span>↺ и&nbsp;по&nbsp;кругу</span></div>
+          </div>
         </div>
+        <p class="proc-caption fragment rise" data-fragment-index="5"><span class="accent">АИ</span> — почти всё до&nbsp;стора. Дальше — трафик и&nbsp;деньги.</p>
         <aside class="notes">
-- Мне нужно понимать флоу приложения: какой экран за каким, что видит человек
-- АИ прототипирует экраны, может разложить вообще всё приложение
-- Я смотрю варианты, выбираю, поправляю
-Совет: прототипы до кода — их дешевле выбросить.
-Клик — Crypto Life: вся карта экранов и переходов в FigCraft.
+Клик за кликом — этапы:
+1. Продукт: ищу идею, строю флоу и заглушки экранов, описываю модели данных
+2. Сборка: GPT собирает код, интегрирую SDK — гугловские и прочие, сервер, тестирую
+3. Запуск: во всех кабинетах всё связать и проверить, выход в стор
+4. Рост: пробую трафик, правлю приложение и дистрибуцию, считаю юнит-экономику, чтобы было в плюс. И по кругу
+5. Клик: где здесь АИ — подсвечивается. До стора АИ делает почти всё. После стора — трафик, дистрибуция, деньги — это уже я.
+Отсюда переход: код стал почти бесплатным…
         </aside>
       </section>
 
-      <!-- ======================= 4. ЭТАП 3: СТОР ======================= -->
-      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
-        <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="on">Стор</li><li>Рост ↺</li></ol>
-          <div class="comparison-head" data-id="comparison-header">
-            <h2>Что делаю я</h2>
-            <h2 class="ai-heading">Что делает АИ</h2>
+      <!-- ======================= 4. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <section class="s-att">
+        <div class="row att">
+          <div class="words">
+            <p class="w">Код <span class="accent">≈ 0</span></p>
+            <p class="w fragment rise" data-fragment-index="1">Приложений — миллионы</p>
+            <p class="w fragment rise" data-fragment-index="2">Внимание людей — <span class="accent">дорого</span></p>
+            <p class="w dist fragment rise" data-fragment-index="3">Дистрибуция</p>
           </div>
-          <div class="comparison-pair" data-id="comparison-store">
-            <div class="comparison-human">
-              <div class="comparison-action">Решаю, как продаём приложение</div>
-              <div class="comparison-detail">Вместе с&nbsp;АИ собираем тексты стора</div>
-            </div>
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="comparison-ai">
-              <div class="comparison-action">Ресёрч ключевых слов</div>
-              <div class="comparison-detail">Переводит всё на&nbsp;50&nbsp;языков</div>
-            </div>
+          <div class="field">
+            <div class="grid" id="appgrid"></div>
+            <div class="eye emo" id="appeye">👁</div>
+            <div class="granny"><span class="emo">👵💻</span>бабушка из Бразилии + GPT</div>
           </div>
-          <div class="shot ph fragment">Скриншот: App Store Connect — список локализаций (или String Catalog с 50 языками)</div>
         </div>
         <aside class="notes">
-- Ресёрч ключевых слов — АИ
-- Контент для стора составляем вместе
-- Переводы: все локали заполняются. У меня по умолчанию 50 языков в каждом приложении
-Совет: 50 языков с первого дня почти ничего не стоят.
-Клик — скриншот.
+- Код стал почти бесплатным — вот твоя приложуха (одна иконка)
+- Клик: приложух миллионы, приложуху может написать любая бразильская бабушка с GPT
+- Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
+- Клик: это и называется дистрибуция
         </aside>
       </section>
 
-      <!-- ======================= 5. ЭТАП 4: РОСТ ↺ ======================= -->
-      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
-        <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Стор</li><li class="on">Рост ↺</li></ol>
-          <div class="comparison-head" data-id="comparison-header">
-            <h2>Что делаю я</h2>
-            <h2 class="ai-heading">Что делает АИ</h2>
-          </div>
-          <div class="comparison-pair" data-id="comparison-growth">
-            <div class="comparison-human">
-              <div class="comparison-action">Смотрю аналитику, наливаю трафик</div>
-              <div class="comparison-detail">Решаю, что поправить</div>
-            </div>
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="comparison-ai">
-              <div class="comparison-action">Вносит правки</div>
-              <div class="comparison-detail">Новая версия — и&nbsp;снова в&nbsp;стор</div>
-            </div>
-          </div>
-          <div class="shot ph fragment">Скриншот: аналитика или рекламный кабинет — Google Ads / Meta</div>
-        </div>
-        <aside class="notes">
-- Приложение вышло — снимаю аналитику
-- Смотрю, корректирую, наливаю трафик
-- Правки — снова АИ. И всё по кругу
-Клик — скриншот. Дальше — айсберг: что из этого видно снаружи, а что под водой.
-        </aside>
-      </section>
-
-      <!-- ======================= 6. АЙСБЕРГ ======================= -->
+      <!-- ======================= 5. АЙСБЕРГ ======================= -->
       <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
       <section class="s-berg">
         <div class="berg">
@@ -327,67 +302,15 @@
           <div class="tile wide fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
 
           <div class="water"></div>
+          <div class="berg-q fragment custom" data-fragment-index="4">Вопросы?</div>
         </div>
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
 1. SDK, интеграции, MMP, реклама
 2. Юнит-экономика
 3. На самом дне: дистрибуция, удержание, возвращение пользователей
-        </aside>
-      </section>
-
-      <!-- ======================= 7. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
-      <section class="s-att">
-        <div class="row att">
-          <div class="words">
-            <p class="w">Код <span class="accent">≈ 0</span></p>
-            <p class="w fragment rise" data-fragment-index="1">Приложений — миллионы</p>
-            <p class="w fragment rise" data-fragment-index="2">Внимание людей — <span class="accent">дорого</span></p>
-            <p class="w dist fragment rise" data-fragment-index="3">Дистрибуция</p>
-          </div>
-          <div class="field">
-            <div class="grid" id="appgrid"></div>
-            <div class="eye emo" id="appeye">👁</div>
-            <div class="granny"><span class="emo">👵💻</span>бабушка из Бразилии + GPT</div>
-          </div>
-        </div>
-        <aside class="notes">
-- Код стал почти бесплатным — вот твоя приложуха (одна иконка)
-- Клик: приложух миллионы, приложуху может написать любая бразильская бабушка с GPT
-- Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
-- Клик: это и называется дистрибуция
-        </aside>
-      </section>
-
-      <!-- ======================= 8. МОИ ПРИЛОЖЕНИЯ ======================= -->
-      <section>
-        <h2>Мои приложения</h2>
-        <div class="row mine">
-          <div class="card app-tile">
-            <div class="icon ph">иконка</div>
-            <b>2Speak</b>
-            <span class="model paid">Подписка</span>
-            <div class="qr ph">QR</div>
-          </div>
-          <div class="card app-tile">
-            <div class="icon ph">иконка</div>
-            <b>Crypto Life</b>
-            <span class="model">Реклама</span>
-            <div class="qr ph">QR</div>
-          </div>
-          <div class="card app-tile">
-            <div class="icon ph">иконка</div>
-            <b>[криптоигра 2]</b>
-            <span class="model">Реклама</span>
-            <div class="qr ph">QR</div>
-          </div>
-        </div>
-        <p class="q fragment rise">Вопросы?</p>
-        <aside class="notes">
-- 2Speak — подписочная история
-- Две криптоигры — свежие, зарабатывают на рекламе
-- QR на экране — можно скачать прямо сейчас
-- Клик: вопросы
+Код — только верхушка. Самое тяжёлое — на дне.
+4. Клик: «Вопросы?»
         </aside>
       </section>
 
@@ -397,7 +320,7 @@
   <script src="reveal/dist/reveal.js"></script>
   <script src="reveal/dist/plugin/notes.js"></script>
   <script>
-    // Сетка одинаковых приложений для слайда 7; одно из них — «моё».
+    // Сетка одинаковых приложений для слайда 4; одно из них — «моё».
     (function () {
       var grid = document.getElementById('appgrid');
       var mine = 53;
@@ -437,7 +360,8 @@
     }).then(function () {
       if (document.documentElement.classList.contains('print-pdf')) {
         // В PDF показываем финальное состояние каждого слайда.
-        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 3; });
+        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 4; });
+        document.querySelectorAll('.s-proc').forEach(function (s) { s.dataset.step = 5; });
         document.querySelectorAll('.s-att').forEach(function (s) { s.dataset.step = 3; });
         placeEye();
       } else {
