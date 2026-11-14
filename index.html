@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>2025 — закупаю товар в Китае / 2026 — мои приложения в сторах</title>
+  <title>Как делается приложение: что делаю я, что делает АИ</title>
 
   <!-- Всё локально: никаких CDN. Шрифты темы встроены в CSS. -->
   <link rel="stylesheet" href="reveal/dist/reset.css">
@@ -65,8 +65,13 @@
     .store-badge.google-play { width: 214.86px; }
     .reveal .store-badge.google-play img { height: 95.24px; }
 
-    /* ---------- 2–3. Мои решения → работа АИ ---------- */
-    .comparison { width: 1160px; height: 360px; margin: 0 auto; text-align: left; }
+    /* ---------- 2–6. Как делается приложение: что делаю я / что делает АИ ---------- */
+    .comparison { position: relative; width: 1160px; height: 440px; margin: 0 auto; text-align: left; }
+    .reveal ol.flow { list-style: none; margin: 0 0 34px; padding: 0; display: flex; gap: 10px;
+      font-size: 0.42em; font-weight: 700; }
+    .reveal ol.flow li { flex: 1; padding-top: 12px; border-top: 4px solid var(--line); color: #4b525d; }
+    .reveal ol.flow li.done { border-color: #6b7380; color: var(--muted); }
+    .reveal ol.flow li.on { border-color: var(--accent); color: var(--accent); }
     .comparison-head, .comparison-pair { display: grid; grid-template-columns: 1fr 32px 1fr;
       column-gap: 28px; align-items: center; }
     .comparison-head { min-height: 72px; box-sizing: border-box;
@@ -80,25 +85,14 @@
     .comparison-detail { font-size: 0.66em; line-height: 1.25; color: #b1b7c0; margin-top: 14px; }
     .comparison-pair .arrow { font-size: 0.8em; text-align: center; }
     .comparison-ai .comparison-action { font-size: 1.1em; }
+    /* Скриншот-пример: по клику накрывает слайд почти целиком */
+    .reveal .shot { position: absolute; top: -130px; bottom: -130px; left: -50px; right: -50px;
+      display: flex; align-items: center; justify-content: center;
+      background: #0b0d10; border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+    .reveal .shot img { display: block; max-width: 100%; max-height: 100%; margin: 0; object-fit: contain; }
+    .reveal .shot.ph { font-size: 0.6em; background: #15181c; padding: 60px; }
 
-    /* ---------- 5. Что стоит за кодом ---------- */
-    .reveal .row.behind { gap: 14px; margin-top: 34px; }
-    .behind .card { width: 250px; height: 300px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; padding: 20px 16px; }
-    .behind svg { width: 120px; height: 90px; }
-    .behind .card.code { border-color: var(--accent); }
-    .layers { width: 150px; font-size: 0.36em; display: flex; flex-direction: column; gap: 6px; }
-    .layers div { border: 2px solid #6b7380; border-radius: 8px; padding: 4px 0; color: #c9ced6; }
-    .mini-wire { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 0.5em; }
-    .mini-wire .scr { width: 52px; height: 92px; border: 2px dashed #6b7380; border-radius: 10px;
-      padding: 8px 6px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px; }
-    .mini-wire .scr i { display: block; height: 10px; border: 1.5px dashed #6b7380; border-radius: 3px; }
-    .mini-chat { width: 100%; font-size: 0.38em; text-align: left; }
-    .mini-chat .b { padding: 8px 12px; border-radius: 12px; margin: 6px 0; max-width: 85%; }
-    .mini-chat .me { background: var(--accent); color: #fff; margin-left: auto; }
-    .mini-chat .ai { background: #2a2f37; }
-
-    /* ---------- 6. Айсберг: вода опускается по шагам ---------- */
+    /* ---------- 7. Айсберг: вода опускается по шагам ---------- */
     .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
       border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
     .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -130,7 +124,7 @@
     .loop.visible .emo { animation: spin 6s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ---------- 7. Код дешёвый, внимание дорогое ---------- */
+    /* ---------- 8. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
     .words { width: 470px; text-align: left; }
     .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
@@ -156,23 +150,16 @@
     .granny .emo { display: block; font-size: 2.4em; }
     .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
 
-    /* ---------- 8. Мои приложения ---------- */
-    .reveal .row.mine { gap: 40px; align-items: stretch; margin-top: 26px; }
-    .mine .col { width: 300px; display: flex; flex-direction: column; gap: 16px; }
-    .mine .col-title { font-size: 0.5em; font-weight: 700; color: var(--muted); }
-    .mine .col-title .emo { font-size: 1.3em; margin-right: 6px; }
-    .mine .col.stores-col { width: 420px; }
-    .app-card { display: flex; align-items: center; gap: 16px; text-align: left; padding: 16px; }
-    .app-card .icon { width: 84px; height: 84px; flex: none; border-radius: 20px; }
-    .app-card .qr { width: 84px; height: 84px; flex: none; margin-left: auto; }
-    .app-card b { font-size: 0.5em; display: block; }
-    .app-card small { font-size: 0.36em; color: var(--muted); }
-    .games { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .games .ph { height: 150px; }
-    .doc { text-align: left; font-size: 0.4em; line-height: 1.5; padding: 20px 22px; }
-    .doc .h { font-weight: 700; font-size: 1.15em; margin-bottom: 8px; }
-    .doc .sec { margin-top: 10px; font-weight: 700; }
-    .doc .ln { height: 9px; border-radius: 5px; background: #2f353e; margin: 7px 0; }
+    /* ---------- 9. Мои приложения ---------- */
+    .reveal .row.mine { gap: 28px; align-items: stretch; margin-top: 40px; }
+    .mine .app-tile { width: 360px; display: flex; flex-direction: column; align-items: center;
+      gap: 14px; padding: 30px 24px; }
+    .mine .app-tile .icon { width: 132px; height: 132px; border-radius: 30px; }
+    .mine .app-tile b { font-size: 0.7em; }
+    .mine .model { font-size: 0.42em; font-weight: 700; padding: 6px 16px; border-radius: 999px;
+      border: 2px solid var(--line); color: #c9ced6; }
+    .mine .model.paid { border-color: var(--accent); color: var(--accent); }
+    .mine .app-tile .qr { width: 132px; height: 132px; margin-top: 6px; }
     .reveal .q { font-size: 0.8em; margin-top: 30px; }
   </style>
 </head>
@@ -185,13 +172,13 @@
         <div class="then-now">
           <div class="tn">
             <span class="when">2025</span>
-            <span class="what">Я закупаю товар в&nbsp;Китае,
-              <span class="context">хочу поменять сферу деятельности</span>
+            <span class="what">Закупаю товар в&nbsp;Китае
+              <span class="context">и думаю, как попасть в&nbsp;IT</span>
             </span>
           </div>
           <div class="tn fragment rise">
             <span class="when accent">2026</span>
-            <span class="what">мои приложения в сторах</span>
+            <span class="what">Мои приложения в&nbsp;сторах</span>
           </div>
           <div class="row stores fragment rise">
             <div class="store-badge google-play"><img src="img/google-play-badge.png" alt="Google Play"></div>
@@ -199,39 +186,47 @@
           </div>
         </div>
         <aside class="notes">
-- В 2025 году закупаю товар в Китае и хочу поменять сферу деятельности
+- В 2025 году закупаю товар в Китае и думаю, как попасть в IT (клик)
 - В 2026 году мои приложения в Google Play и App Store (клик — значки магазинов)
 - Ссылки — в конце
         </aside>
       </section>
 
-      <!-- ======================= 2. АРХИТЕКТУРА → КОД ======================= -->
-      <section data-auto-animate data-auto-animate-duration="0.35">
+      <!-- ======================= 2. ЭТАП 1: ИДЕЯ И КОД ======================= -->
+      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
+          <ol class="flow" data-id="flow"><li class="on">Идея и код</li><li>Экраны</li><li>Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
           </div>
-          <div class="comparison-pair" data-id="comparison-architecture">
+          <div class="comparison-pair" data-id="comparison-idea">
             <div class="comparison-human">
-              <div class="comparison-action">Принимаю архитектурные решения</div>
-              <div class="comparison-detail">Описываю данные и&nbsp;дата-флоу</div>
+              <div class="comparison-action">Придумываю идею и&nbsp;модель данных</div>
+              <div class="comparison-detail">Описываю дата-флоу, принимаю архитектурные решения</div>
             </div>
             <span class="arrow" aria-hidden="true">→</span>
             <div class="comparison-ai">
               <div class="comparison-action">Пишет код</div>
+              <div class="comparison-detail">По&nbsp;готовым правилам архитектуры</div>
             </div>
           </div>
+          <div class="shot ph fragment">Скриншот: Xcode / Android Studio + чат, где АИ пишет код</div>
         </div>
         <aside class="notes">
-Я принимаю архитектурные решения, описываю данные и дата-флоу. АИ пишет код.
-Шапка остаётся на месте. Следующий клик меняет противопоставление под ней.
+Шапка «Что делаю я / Что делает АИ» остаётся на месте на всех пяти этапах. Сверху — где мы во флоу.
+- Сначала идея — словами, без кода и экранов
+- Дальше модель данных и дата-флоу: что храним, откуда и куда течёт
+- Архитектурные решения — мои. Код — АИ
+Совет: не просить «напиши приложение». Архитектуру отдать готовыми правилами (скиллами) — тогда проект собирается.
+Клик — скриншот: так это выглядит.
         </aside>
       </section>
 
-      <!-- ======================= 3. ПРОДУКТОВЫЙ ФЛОУ → ПРОТОТИПЫ ======================= -->
-      <section data-auto-animate data-auto-animate-duration="0.35">
+      <!-- ======================= 3. ЭТАП 2: ЭКРАНЫ ======================= -->
+      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="on">Экраны</li><li>Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
@@ -244,78 +239,110 @@
             <span class="arrow" aria-hidden="true">→</span>
             <div class="comparison-ai">
               <div class="comparison-action">Прототипирует экраны</div>
-              <div class="comparison-detail">Переносит флоу в&nbsp;редактор</div>
+              <div class="comparison-detail">Раскладывает всё приложение в&nbsp;редакторе</div>
             </div>
           </div>
+          <div class="shot fragment"><img src="img/cryptolife-figcraft.png" alt="Crypto Life — карта экранов в FigCraft"></div>
         </div>
         <aside class="notes">
-Я определяю продуктовый флоу, рассматриваю варианты экранов, выбираю и корректирую их.
-АИ переносит флоу в редактор и прототипирует экраны.
-Шапка остаётся на месте при смене противопоставления. Дальше — отдельный слайд с картой Crypto Life.
+- Мне нужно понимать флоу приложения: какой экран за каким, что видит человек
+- АИ прототипирует экраны, может разложить вообще всё приложение
+- Я смотрю варианты, выбираю, поправляю
+Совет: прототипы до кода — их дешевле выбросить.
+Клик — Crypto Life: вся карта экранов и переходов в FigCraft.
         </aside>
       </section>
 
-      <!-- ======================= 4. CRYPTO LIFE — МАСШТАБ КАРТЫ ЭКРАНОВ ======================= -->
-      <section class="s-cryptolife-overview" aria-label="Crypto Life — карта экранов в FigCraft"
-        data-background-image="img/cryptolife-figcraft.png" data-background-size="contain"
-        data-background-color="#000000">
-        <aside class="notes">
-Crypto Life: карта экранов и переходов в FigCraft.
-Показываю масштаб продуктового флоу, варианты и состояния экранов, которые рассматриваю, выбираю и корректирую.
-Источник: скриншот пользователя «crypto life экарны.png» — img/cryptolife-figcraft.png.
-        </aside>
-      </section>
-
-      <!-- ======================= 5. ЧАТ ПИШЕТ КОД, РЕШЕНИЯ — МОИ ======================= -->
-      <section>
-        <h2>Чат пишет код. <span class="accent">Решения — мои.</span></h2>
-        <div class="row behind">
-          <div class="card fragment rise">
-            <svg viewBox="0 0 120 90" aria-hidden="true">
-              <path d="M10 10 H110 V62 H46 L28 80 V62 H10 Z" fill="none" stroke="#dfe3e8" stroke-width="3" stroke-linejoin="round"/>
-              <path d="M24 26 H96 M24 38 H88 M24 50 H70" stroke="#8b9098" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <div class="label">Понять, что я&nbsp;хочу</div>
-            <div class="sub">словами: без кода и&nbsp;экранов</div>
+      <!-- ======================= 4. ЭТАП 3: ИНТЕГРАЦИИ ======================= -->
+      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
+        <div class="comparison">
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="on">Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
+          <div class="comparison-head" data-id="comparison-header">
+            <h2>Что делаю я</h2>
+            <h2 class="ai-heading">Что делает АИ</h2>
           </div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card fragment rise">
-            <div class="layers">
-              <div>Экраны</div><div>Логика</div><div>Данные</div>
+          <div class="comparison-pair" data-id="comparison-integrations">
+            <div class="comparison-human">
+              <div class="comparison-action">Выбираю SDK, аналитику, MMP, рекламу</div>
+              <div class="comparison-detail">Проверяю, что каждое событие доходит</div>
             </div>
-            <div class="label">Архитектура и&nbsp;продукт</div>
-            <div class="sub">это решаю я, не&nbsp;чат</div>
-          </div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card fragment rise">
-            <div class="mini-wire">
-              <div class="scr"><i></i><i></i><i></i></div><span>→</span>
-              <div class="scr"><i></i><i></i></div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="comparison-ai">
+              <div class="comparison-action">Встраивает SDK</div>
+              <div class="comparison-detail">Размечает события</div>
             </div>
-            <div class="label">Скелет на&nbsp;заглушках</div>
-            <div class="sub">навигация, HTML-прототипы</div>
           </div>
-          <div class="arrow fragment rise">→</div>
-          <div class="card code fragment rise">
-            <div class="mini-chat">
-              <div class="b me">Делай</div>
-              <div class="b ai">Готово ✓</div>
-            </div>
-            <div class="label">Код</div>
-            <div class="sub">а вот это уже чат</div>
-          </div>
+          <div class="shot ph fragment">Скриншот: события в дашборде — Firebase DebugView / AppsFlyer / Adjust</div>
         </div>
         <aside class="notes">
-- Чат пишет код, но решения сам не принимает
-- За кодом стоит архитектура и продуктовый дизайн
-- Сначала понять, что ты хочешь — на словах, без кода, без экранов (клик)
-- Архитектура и продукт — твоё решение (клик)
-- Когда понял — прототипы на заглушках: навигация, структура экранов, HTML (клик)
-- И только потом код — это делает чат (клик)
+- Приложение готово — теперь интеграции: SDK, аналитика, MMP, рекламные сети
+- Что подключать и зачем — решаю я
+- Встраивает и размечает события — АИ
+- Тест полного круга: событие из приложения реально доходит до аналитики и рекламы
+Клик — скриншот.
         </aside>
       </section>
 
-      <!-- ======================= 6. АЙСБЕРГ ======================= -->
+      <!-- ======================= 5. ЭТАП 4: СТОР ======================= -->
+      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
+        <div class="comparison">
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Интеграции</li><li class="on">Стор</li><li>Рост ↺</li></ol>
+          <div class="comparison-head" data-id="comparison-header">
+            <h2>Что делаю я</h2>
+            <h2 class="ai-heading">Что делает АИ</h2>
+          </div>
+          <div class="comparison-pair" data-id="comparison-store">
+            <div class="comparison-human">
+              <div class="comparison-action">Решаю, как продаём приложение</div>
+              <div class="comparison-detail">Вместе с&nbsp;АИ собираем тексты стора</div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="comparison-ai">
+              <div class="comparison-action">Ресёрч ключевых слов</div>
+              <div class="comparison-detail">Переводит всё на&nbsp;50&nbsp;языков</div>
+            </div>
+          </div>
+          <div class="shot ph fragment">Скриншот: App Store Connect — список локализаций (или String Catalog с 50 языками)</div>
+        </div>
+        <aside class="notes">
+- Ресёрч ключевых слов — АИ
+- Контент для стора составляем вместе
+- Переводы: все локали заполняются. У меня по умолчанию 50 языков в каждом приложении
+Совет: 50 языков с первого дня почти ничего не стоят.
+Клик — скриншот.
+        </aside>
+      </section>
+
+      <!-- ======================= 6. ЭТАП 5: РОСТ ↺ ======================= -->
+      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
+        <div class="comparison">
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Интеграции</li><li class="done">Стор</li><li class="on">Рост ↺</li></ol>
+          <div class="comparison-head" data-id="comparison-header">
+            <h2>Что делаю я</h2>
+            <h2 class="ai-heading">Что делает АИ</h2>
+          </div>
+          <div class="comparison-pair" data-id="comparison-growth">
+            <div class="comparison-human">
+              <div class="comparison-action">Смотрю аналитику, наливаю трафик</div>
+              <div class="comparison-detail">Решаю, что поправить</div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="comparison-ai">
+              <div class="comparison-action">Вносит правки</div>
+              <div class="comparison-detail">Новая версия — и&nbsp;снова в&nbsp;стор</div>
+            </div>
+          </div>
+          <div class="shot ph fragment">Скриншот: аналитика или рекламный кабинет — Google Ads / Meta</div>
+        </div>
+        <aside class="notes">
+- Приложение вышло — снимаю аналитику
+- Смотрю, корректирую, наливаю трафик
+- Правки — снова АИ. И всё по кругу
+Клик — скриншот. Дальше — айсберг: что из этого видно снаружи.
+        </aside>
+      </section>
+
+      <!-- ======================= 7. АЙСБЕРГ ======================= -->
       <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
       <section class="s-berg">
         <div class="berg">
@@ -335,7 +362,7 @@ Crypto Life: карта экранов и переходов в FigCraft.
           <!-- слой 2: реклама -->
           <div class="tile fragment custom" data-fragment-index="2" style="left: 335px; top: 242px;"><span class="emo">📣</span>Google Ads</div>
           <div class="tile fragment custom" data-fragment-index="2" style="left: 505px; top: 242px;"><span class="emo">📣</span>Meta Ads</div>
-          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Дистрибуция</div>
+          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Трафик</div>
           <!-- слой 3: тест полного круга -->
           <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 352px;"><span class="emo">🔁</span>Тест полного круга</div>
           <!-- слой 4: юнит-экономика -->
@@ -348,14 +375,14 @@ Crypto Life: карта экранов и переходов в FigCraft.
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
 1. SDK, аналитика, атрибуция, MMP
-2. Google Ads, Meta Ads, дистрибуция
+2. Google Ads, Meta Ads, трафик
 3. Тест полного круга — каждое событие реально доходит
 4. Юнит-экономика — посчитать
 5. И по кругу: сделал → протестировал → исправил → повторил
         </aside>
       </section>
 
-      <!-- ======================= 7. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <!-- ======================= 8. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
       <section class="s-att">
         <div class="row att">
           <div class="words">
@@ -378,45 +405,34 @@ Crypto Life: карта экранов и переходов в FigCraft.
         </aside>
       </section>
 
-      <!-- ======================= 8. МОИ ПРИЛОЖЕНИЯ ======================= -->
+      <!-- ======================= 9. МОИ ПРИЛОЖЕНИЯ ======================= -->
       <section>
         <h2>Мои приложения</h2>
         <div class="row mine">
-          <div class="col stores-col">
-            <div class="col-title"><span class="emo">📱</span>В сторах</div>
-            <div class="card app-card">
-              <div class="icon ph">иконка</div>
-              <div><b>[приложение 1]</b><small>Google Play</small></div>
-              <div class="qr ph">QR</div>
-            </div>
-            <div class="card app-card">
-              <div class="icon ph">иконка</div>
-              <div><b>[приложение 2]</b><small>App Store</small></div>
-              <div class="qr ph">QR</div>
-            </div>
+          <div class="card app-tile">
+            <div class="icon ph">иконка</div>
+            <b>2Speak</b>
+            <span class="model paid">Подписка</span>
+            <div class="qr ph">QR</div>
           </div>
-          <div class="col fragment rise">
-            <div class="col-title"><span class="emo">🎮</span>Игры</div>
-            <div class="games">
-              <div class="ph">[игра 1]</div>
-              <div class="ph">[игра 2]</div>
-            </div>
+          <div class="card app-tile">
+            <div class="icon ph">иконка</div>
+            <b>Crypto Life</b>
+            <span class="model">Реклама</span>
+            <div class="qr ph">QR</div>
           </div>
-          <div class="col fragment rise">
-            <div class="col-title"><span class="emo">📄</span>Дизайн-пейдж</div>
-            <div class="card doc">
-              <div class="h">[Игра] — design page</div>
-              <div class="sec">🔁 Core loop</div><div class="ln"></div><div class="ln" style="width:70%"></div>
-              <div class="sec">💎 Экономика</div><div class="ln"></div><div class="ln" style="width:55%"></div>
-              <div class="sec">🗺 Уровни</div><div class="ln" style="width:80%"></div>
-            </div>
+          <div class="card app-tile">
+            <div class="icon ph">иконка</div>
+            <b>[криптоигра 2]</b>
+            <span class="model">Реклама</span>
+            <div class="qr ph">QR</div>
           </div>
         </div>
         <p class="q fragment rise">Вопросы?</p>
         <aside class="notes">
-- Два приложения в сторах — ссылки/QR на экране
-- Клик: игровые приложения
-- Клик: дизайн-пейдж — держу в голове гейм-дизайн приложения
+- 2Speak — подписочная история
+- Две криптоигры — свежие, зарабатывают на рекламе
+- QR на экране — можно скачать прямо сейчас
 - Клик: вопросы
         </aside>
       </section>
@@ -427,7 +443,7 @@ Crypto Life: карта экранов и переходов в FigCraft.
   <script src="reveal/dist/reveal.js"></script>
   <script src="reveal/dist/plugin/notes.js"></script>
   <script>
-    // Сетка одинаковых приложений для слайда 5; одно из них — «моё».
+    // Сетка одинаковых приложений для слайда 8; одно из них — «моё».
     (function () {
       var grid = document.getElementById('appgrid');
       var mine = 53;
