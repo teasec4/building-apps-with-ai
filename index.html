@@ -65,7 +65,7 @@
     .store-badge.google-play { width: 214.86px; }
     .reveal .store-badge.google-play img { height: 95.24px; }
 
-    /* ---------- 2–6. Как делается приложение: что делаю я / что делает АИ ---------- */
+    /* ---------- 2–5. Как делается приложение: что делаю я / что делает АИ ---------- */
     .comparison { position: relative; width: 1160px; height: 440px; margin: 0 auto; text-align: left; }
     .reveal ol.flow { list-style: none; margin: 0 0 34px; padding: 0; display: flex; gap: 10px;
       font-size: 0.42em; font-weight: 700; }
@@ -92,7 +92,7 @@
     .reveal .shot img { display: block; max-width: 100%; max-height: 100%; margin: 0; object-fit: contain; }
     .reveal .shot.ph { font-size: 0.6em; background: #15181c; padding: 60px; }
 
-    /* ---------- 7. Айсберг: вода опускается по шагам ---------- */
+    /* ---------- 6. Айсберг: вода опускается по шагам ---------- */
     .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
       border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
     .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -102,11 +102,9 @@
     .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
       background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
       border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
-    .s-berg[data-step="1"] .water { transform: translateY(110px); }
-    .s-berg[data-step="2"] .water { transform: translateY(220px); }
-    .s-berg[data-step="3"] .water { transform: translateY(330px); }
-    .s-berg[data-step="4"] .water,
-    .s-berg[data-step="5"] .water { transform: translateY(440px); }
+    .s-berg[data-step="1"] .water { transform: translateY(160px); }
+    .s-berg[data-step="2"] .water { transform: translateY(310px); }
+    .s-berg[data-step="3"] .water { transform: translateY(470px); }
     .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
       background: #fff; color: #111; border-radius: 16px; text-align: center;
       box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
@@ -115,16 +113,8 @@
     .tile.wide { width: 230px; }
     .tile.hot { background: var(--accent); color: #fff; }
     .tile.visible { opacity: 1; transform: none; }
-    .loop { position: absolute; z-index: 2; right: 40px; top: 170px; width: 230px; height: 230px;
-      border-radius: 50%; border: 4px dashed var(--accent); display: flex; flex-direction: column;
-      align-items: center; justify-content: center; font-size: 0.42em; font-weight: 700; line-height: 1.3;
-      background: rgba(18, 20, 23, .85); opacity: 0; transform: rotate(-90deg) scale(.6); transition: all .7s ease; }
-    .loop .emo { font-size: 2.6em; }
-    .loop.visible { opacity: 1; transform: none; }
-    .loop.visible .emo { animation: spin 6s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ---------- 8. Код дешёвый, внимание дорогое ---------- */
+    /* ---------- 7. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
     .words { width: 470px; text-align: left; }
     .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
@@ -150,7 +140,7 @@
     .granny .emo { display: block; font-size: 2.4em; }
     .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
 
-    /* ---------- 9. Мои приложения ---------- */
+    /* ---------- 8. Мои приложения ---------- */
     .reveal .row.mine { gap: 28px; align-items: stretch; margin-top: 40px; }
     .mine .app-tile { width: 360px; display: flex; flex-direction: column; align-items: center;
       gap: 14px; padding: 30px 24px; }
@@ -195,7 +185,7 @@
       <!-- ======================= 2. ЭТАП 1: ИДЕЯ И КОД ======================= -->
       <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="on">Идея и код</li><li>Экраны</li><li>Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
+          <ol class="flow" data-id="flow"><li class="on">Идея и код</li><li>Экраны</li><li>Стор</li><li>Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
@@ -214,7 +204,7 @@
           <div class="shot ph fragment">Скриншот: Xcode / Android Studio + чат, где АИ пишет код</div>
         </div>
         <aside class="notes">
-Шапка «Что делаю я / Что делает АИ» остаётся на месте на всех пяти этапах. Сверху — где мы во флоу.
+Шапка «Что делаю я / Что делает АИ» остаётся на месте на всех четырёх этапах. Сверху — где мы во флоу.
 - Сначала идея — словами, без кода и экранов
 - Дальше модель данных и дата-флоу: что храним, откуда и куда течёт
 - Архитектурные решения — мои. Код — АИ
@@ -226,7 +216,7 @@
       <!-- ======================= 3. ЭТАП 2: ЭКРАНЫ ======================= -->
       <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="on">Экраны</li><li>Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="on">Экраны</li><li>Стор</li><li>Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
@@ -253,40 +243,10 @@
         </aside>
       </section>
 
-      <!-- ======================= 4. ЭТАП 3: ИНТЕГРАЦИИ ======================= -->
+      <!-- ======================= 4. ЭТАП 3: СТОР ======================= -->
       <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="on">Интеграции</li><li>Стор</li><li>Рост ↺</li></ol>
-          <div class="comparison-head" data-id="comparison-header">
-            <h2>Что делаю я</h2>
-            <h2 class="ai-heading">Что делает АИ</h2>
-          </div>
-          <div class="comparison-pair" data-id="comparison-integrations">
-            <div class="comparison-human">
-              <div class="comparison-action">Выбираю SDK, аналитику, MMP, рекламу</div>
-              <div class="comparison-detail">Проверяю, что каждое событие доходит</div>
-            </div>
-            <span class="arrow" aria-hidden="true">→</span>
-            <div class="comparison-ai">
-              <div class="comparison-action">Встраивает SDK</div>
-              <div class="comparison-detail">Размечает события</div>
-            </div>
-          </div>
-          <div class="shot ph fragment">Скриншот: события в дашборде — Firebase DebugView / AppsFlyer / Adjust</div>
-        </div>
-        <aside class="notes">
-- Приложение готово — теперь интеграции: SDK, аналитика, MMP, рекламные сети
-- Что подключать и зачем — решаю я
-- Встраивает и размечает события — АИ
-- Тест полного круга: событие из приложения реально доходит до аналитики и рекламы
-Клик — скриншот.
-        </aside>
-      </section>
-
-      <!-- ======================= 5. ЭТАП 4: СТОР ======================= -->
-      <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
-        <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Интеграции</li><li class="on">Стор</li><li>Рост ↺</li></ol>
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="on">Стор</li><li>Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
@@ -313,10 +273,10 @@
         </aside>
       </section>
 
-      <!-- ======================= 6. ЭТАП 5: РОСТ ↺ ======================= -->
+      <!-- ======================= 5. ЭТАП 4: РОСТ ↺ ======================= -->
       <section class="s-stage" data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Интеграции</li><li class="done">Стор</li><li class="on">Рост ↺</li></ol>
+          <ol class="flow" data-id="flow"><li class="done">Идея и код</li><li class="done">Экраны</li><li class="done">Стор</li><li class="on">Рост ↺</li></ol>
           <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
@@ -338,11 +298,11 @@
 - Приложение вышло — снимаю аналитику
 - Смотрю, корректирую, наливаю трафик
 - Правки — снова АИ. И всё по кругу
-Клик — скриншот. Дальше — айсберг: что из этого видно снаружи.
+Клик — скриншот. Дальше — айсберг: что из этого видно снаружи, а что под водой.
         </aside>
       </section>
 
-      <!-- ======================= 7. АЙСБЕРГ ======================= -->
+      <!-- ======================= 6. АЙСБЕРГ ======================= -->
       <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
       <section class="s-berg">
         <div class="berg">
@@ -354,35 +314,29 @@
           </svg>
           <div class="tip"><span class="emo">📱</span>Приложение</div>
 
-          <!-- слой 1: SDK и данные -->
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 250px; top: 132px;"><span class="emo">🧩</span>SDK</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 420px; top: 132px;"><span class="emo">📊</span>Аналитика</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 590px; top: 132px;"><span class="emo">🎯</span>Атрибуция</div>
-          <div class="tile fragment custom" data-fragment-index="1" style="left: 760px; top: 132px;"><span class="emo">🔗</span>MMP</div>
-          <!-- слой 2: реклама -->
-          <div class="tile fragment custom" data-fragment-index="2" style="left: 335px; top: 242px;"><span class="emo">📣</span>Google Ads</div>
-          <div class="tile fragment custom" data-fragment-index="2" style="left: 505px; top: 242px;"><span class="emo">📣</span>Meta Ads</div>
-          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Трафик</div>
-          <!-- слой 3: тест полного круга -->
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 352px;"><span class="emo">🔁</span>Тест полного круга</div>
-          <!-- слой 4: юнит-экономика -->
-          <div class="tile wide hot fragment custom" data-fragment-index="4" style="left: 475px; top: 462px;"><span class="emo">💰</span>Юнит-экономика</div>
-          <!-- и всё по кругу -->
-          <div class="loop fragment custom" data-fragment-index="5"><span class="emo">🔄</span>сделал<br>протестировал<br>исправил<br>повторил</div>
+          <!-- слой 1: техника -->
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 250px; top: 150px;"><span class="emo">🧩</span>SDK</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 420px; top: 150px;"><span class="emo">🔌</span>Интеграции</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 590px; top: 150px;"><span class="emo">🔗</span>MMP</div>
+          <div class="tile fragment custom" data-fragment-index="1" style="left: 760px; top: 150px;"><span class="emo">📣</span>Реклама</div>
+          <!-- слой 2: юнит-экономика -->
+          <div class="tile wide fragment custom" data-fragment-index="2" style="left: 475px; top: 305px;"><span class="emo">💰</span>Юнит-экономика</div>
+          <!-- дно: дистрибуция и удержание -->
+          <div class="tile wide hot fragment custom" data-fragment-index="3" style="left: 235px; top: 460px;"><span class="emo">📡</span>Дистрибуция</div>
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 460px;"><span class="emo">🧲</span>Удержание</div>
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
 
           <div class="water"></div>
         </div>
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
-1. SDK, аналитика, атрибуция, MMP
-2. Google Ads, Meta Ads, трафик
-3. Тест полного круга — каждое событие реально доходит
-4. Юнит-экономика — посчитать
-5. И по кругу: сделал → протестировал → исправил → повторил
+1. SDK, интеграции, MMP, реклама
+2. Юнит-экономика
+3. На самом дне: дистрибуция, удержание, возвращение пользователей
         </aside>
       </section>
 
-      <!-- ======================= 8. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <!-- ======================= 7. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
       <section class="s-att">
         <div class="row att">
           <div class="words">
@@ -405,7 +359,7 @@
         </aside>
       </section>
 
-      <!-- ======================= 9. МОИ ПРИЛОЖЕНИЯ ======================= -->
+      <!-- ======================= 8. МОИ ПРИЛОЖЕНИЯ ======================= -->
       <section>
         <h2>Мои приложения</h2>
         <div class="row mine">
@@ -443,7 +397,7 @@
   <script src="reveal/dist/reveal.js"></script>
   <script src="reveal/dist/plugin/notes.js"></script>
   <script>
-    // Сетка одинаковых приложений для слайда 8; одно из них — «моё».
+    // Сетка одинаковых приложений для слайда 7; одно из них — «моё».
     (function () {
       var grid = document.getElementById('appgrid');
       var mine = 53;
@@ -483,7 +437,7 @@
     }).then(function () {
       if (document.documentElement.classList.contains('print-pdf')) {
         // В PDF показываем финальное состояние каждого слайда.
-        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 5; });
+        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 3; });
         document.querySelectorAll('.s-att').forEach(function (s) { s.dataset.step = 3; });
         placeEye();
       } else {
