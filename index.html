@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Год назад я не был в разработке</title>
+  <title>2025 — закупаю товар в Китае / 2026 — мои приложения в сторах</title>
 
   <!-- Всё локально: никаких CDN. Шрифты темы встроены в CSS. -->
   <link rel="stylesheet" href="reveal/dist/reset.css">
@@ -47,32 +47,39 @@
     }
     .emo { font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
 
-    /* ---------- 1. Год назад / сегодня ---------- */
-    .then-now { text-align: left; display: inline-block; }
-    .then-now .tn { display: flex; align-items: baseline; gap: 36px; margin: 18px 0; }
-    .then-now .when { width: 300px; flex: none; font-size: 0.75em; color: var(--muted); text-align: right; }
+    /* ---------- 1. 2025 / 2026 ---------- */
+    .then-now { text-align: left; width: 1180px; margin: 0 auto; transform: translateY(-52px); }
+    .then-now .tn { display: flex; align-items: baseline; gap: 36px; margin: 26px 0; }
+    .then-now .when { width: 190px; flex: none; font-size: 2em; font-weight: 700;
+      line-height: 1; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
     .then-now .tn .accent { color: var(--accent); }
-    .then-now .what { font-size: 1.6em; font-weight: 700; line-height: 1.15; }
-    .reveal .row.stores { justify-content: flex-start; padding-left: 336px; margin-top: 18px; }
-    .store { padding: 14px 28px; border-radius: 16px; background: #000; border: 2px solid #3a414c;
-      font-size: 0.6em; font-weight: 700; text-align: left; line-height: 1.2; }
-    .store small { display: block; font-size: 0.6em; font-weight: 400; color: var(--muted); }
+    .then-now .what { flex: 1; min-width: 0; font-size: 1.6em; font-weight: 700; line-height: 1.15; }
+    .then-now .what .context { display: block; margin-top: 12px; font-size: 0.6em;
+      font-weight: 400; line-height: 1.3; color: #c9ced6; }
+    .reveal .row.stores { justify-content: flex-start; padding-left: 226px; margin-top: 24px; gap: 32px; }
+    .store-badge { display: flex; align-items: center; justify-content: center;
+      width: 191.46px; height: 64px; flex: none; }
+    .reveal .store-badge img { display: block; width: auto; height: 64px; margin: 0;
+      max-width: none; max-height: none; }
+    /* У Google Play прозрачные поля: выравниваем видимую часть значка по высоте с App Store. */
+    .store-badge.google-play { width: 214.86px; }
+    .reveal .store-badge.google-play img { height: 95.24px; }
 
-    /* ---------- 2. Сначала писал сам ---------- */
-    .reveal .row.start-story { gap: 60px; margin-top: 30px; }
-    .story { width: 560px; text-align: left; font-size: 0.72em; }
-    .story p { margin: 0 0 22px; }
-    .term { text-align: left; font-family: var(--r-code-font); background: #0b0d10;
-      border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
-    .term .bar { background: #1c2026; padding: 10px 14px; display: flex; gap: 8px; }
-    .term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3a414c; display: block; }
-    .term .body { padding: 18px 24px; line-height: 1.6; }
-    .term .dim { color: var(--muted); }
-    .reveal .term.build { width: 480px; font-size: 0.5em; }
-    .term .fail { color: #ff5f56; font-weight: 700; }
-    .term .pass { color: var(--ok); font-weight: 700; }
+    /* ---------- 2–3. Мои решения → работа АИ ---------- */
+    .comparison { width: 1160px; margin: 0 auto; text-align: left; }
+    .comparison-head, .comparison-pair { display: grid; grid-template-columns: 1fr 32px 1fr;
+      column-gap: 28px; align-items: center; }
+    .comparison-head { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .reveal .comparison-head h2 { margin: 0; font-size: 1.05em; line-height: 1.2;
+      text-transform: uppercase; }
+    .comparison-head .ai-heading { grid-column: 3; color: var(--accent); }
+    .comparison-pair { padding: 36px 0; border-bottom: 1px solid var(--line); }
+    .comparison-action { font-size: 0.95em; font-weight: 600; line-height: 1.2; }
+    .comparison-detail { font-size: 0.66em; line-height: 1.25; color: #b1b7c0; margin-top: 14px; }
+    .comparison-pair .arrow { font-size: 0.8em; text-align: center; }
+    .comparison-ai .comparison-action { font-size: 1.1em; }
 
-    /* ---------- 3. Что стоит за кодом ---------- */
+    /* ---------- 5. Что стоит за кодом ---------- */
     .reveal .row.behind { gap: 14px; margin-top: 34px; }
     .behind .card { width: 250px; height: 300px; display: flex; flex-direction: column;
       align-items: center; justify-content: center; padding: 20px 16px; }
@@ -89,7 +96,7 @@
     .mini-chat .me { background: var(--accent); color: #fff; margin-left: auto; }
     .mini-chat .ai { background: #2a2f37; }
 
-    /* ---------- 4. Айсберг: вода опускается по шагам ---------- */
+    /* ---------- 6. Айсберг: вода опускается по шагам ---------- */
     .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
       border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
     .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -121,7 +128,7 @@
     .loop.visible .emo { animation: spin 6s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ---------- 5. Код дешёвый, внимание дорогое ---------- */
+    /* ---------- 7. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
     .words { width: 470px; text-align: left; }
     .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
@@ -147,7 +154,7 @@
     .granny .emo { display: block; font-size: 2.4em; }
     .s-att[data-step="1"] .granny { opacity: 1; transform: none; }
 
-    /* ---------- 6. Мои приложения ---------- */
+    /* ---------- 8. Мои приложения ---------- */
     .reveal .row.mine { gap: 40px; align-items: stretch; margin-top: 26px; }
     .mine .col { width: 300px; display: flex; flex-direction: column; gap: 16px; }
     .mine .col-title { font-size: 0.5em; font-weight: 700; color: var(--muted); }
@@ -171,57 +178,93 @@
   <div class="reveal">
     <div class="slides">
 
-      <!-- ======================= 1. ГОД НАЗАД / СЕГОДНЯ ======================= -->
+      <!-- ======================= 1. 2025 / 2026 ======================= -->
       <section>
         <div class="then-now">
           <div class="tn">
-            <span class="when">Год назад</span>
-            <span class="what">я не был в разработке</span>
+            <span class="when">2025</span>
+            <span class="what">Я закупаю товар в&nbsp;Китае,
+              <span class="context">хочу поменять сферу деятельности</span>
+            </span>
           </div>
           <div class="tn fragment rise">
-            <span class="when accent">Сегодня</span>
+            <span class="when accent">2026</span>
             <span class="what">мои приложения в сторах</span>
           </div>
           <div class="row stores fragment rise">
-            <div class="store"><small>Android</small>Google Play</div>
-            <div class="store"><small>iOS</small>App Store</div>
+            <div class="store-badge google-play"><img src="img/google-play-badge.png" alt="Google Play"></div>
+            <div class="store-badge"><img src="img/app-store-badge-ru.svg" alt="Загрузите в App Store"></div>
           </div>
         </div>
         <aside class="notes">
-- Год назад я ещё не был в разработке (клик)
-- Сегодня у меня приложение в Google Play и приложение в App Store (клик — плашки)
+- В 2025 году закупаю товар в Китае и хочу поменять сферу деятельности
+- В 2026 году мои приложения в Google Play и App Store (клик — значки магазинов)
 - Ссылки — в конце
         </aside>
       </section>
 
-      <!-- ======================= 2. СНАЧАЛА ПИСАЛ САМ ======================= -->
+      <!-- ======================= 2. АРХИТЕКТУРА → КОД ======================= -->
       <section>
-        <h2>Сначала я писал код сам</h2>
-        <div class="row start-story">
-          <div class="story">
-            <p class="fragment rise" data-fragment-index="1">Учил архитектуру с&nbsp;утра до&nbsp;ночи</p>
-            <p class="fragment rise" data-fragment-index="2">GPT помогал, но&nbsp;проекты не&nbsp;собирались</p>
-            <p class="fragment rise" data-fragment-index="3">Потом что-то щёлкнуло</p>
+        <div class="comparison">
+          <div class="comparison-head">
+            <h2>Что делаю я</h2>
+            <h2 class="ai-heading">Что делает АИ</h2>
           </div>
-          <div class="term build">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <div class="body">
-              <span class="dim">$ ./gradlew build</span><br>
-              <span class="fragment rise fail" data-fragment-index="2">✗ BUILD FAILED</span><br>
-              <span class="fragment rise fail" data-fragment-index="2">✗ BUILD FAILED</span><br>
-              <span class="fragment rise pass" data-fragment-index="3">✓ BUILD SUCCESSFUL</span>
+          <div class="comparison-pair fragment rise" data-fragment-index="1">
+            <div class="comparison-human">
+              <div class="comparison-action">Принимаю архитектурные решения</div>
+              <div class="comparison-detail">Описываю данные и&nbsp;дата-флоу</div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="comparison-ai">
+              <div class="comparison-action">Пишет код</div>
             </div>
           </div>
         </div>
         <aside class="notes">
-Короткая вводная история, не задерживаться.
-- Писал код сам, изучал архитектуру с утра до ночи (клик)
-- GPT помогал, но проекты не билдились (клик)
-- Потом что-то произошло — и начали билдиться (клик)
+Я принимаю архитектурные решения, описываю данные и дата-флоу. АИ пишет код.
+Клик раскрывает противопоставление целиком.
         </aside>
       </section>
 
-      <!-- ======================= 3. ЧАТ ПИШЕТ КОД, РЕШЕНИЯ — МОИ ======================= -->
+      <!-- ======================= 3. ПРОДУКТОВЫЙ ФЛОУ → ПРОТОТИПЫ ======================= -->
+      <section>
+        <div class="comparison">
+          <div class="comparison-head">
+            <h2>Что делаю я</h2>
+            <h2 class="ai-heading">Что делает АИ</h2>
+          </div>
+          <div class="comparison-pair fragment rise" data-fragment-index="1">
+            <div class="comparison-human">
+              <div class="comparison-action">Определяю продуктовый флоу</div>
+              <div class="comparison-detail">Выбираю и&nbsp;корректирую варианты</div>
+            </div>
+            <span class="arrow" aria-hidden="true">→</span>
+            <div class="comparison-ai">
+              <div class="comparison-action">Прототипирует экраны</div>
+              <div class="comparison-detail">Переносит флоу в&nbsp;редактор</div>
+            </div>
+          </div>
+        </div>
+        <aside class="notes">
+Я определяю продуктовый флоу, рассматриваю варианты экранов, выбираю и корректирую их.
+АИ переносит флоу в редактор и прототипирует экраны.
+Клик раскрывает противопоставление целиком. Дальше — отдельный слайд с картой Crypto Life.
+        </aside>
+      </section>
+
+      <!-- ======================= 4. CRYPTO LIFE — МАСШТАБ КАРТЫ ЭКРАНОВ ======================= -->
+      <section class="s-cryptolife-overview" aria-label="Crypto Life — карта экранов в FigCraft"
+        data-background-image="img/cryptolife-figcraft.png" data-background-size="contain"
+        data-background-color="#000000">
+        <aside class="notes">
+Crypto Life: карта экранов и переходов в FigCraft.
+Показываю масштаб продуктового флоу, варианты и состояния экранов, которые рассматриваю, выбираю и корректирую.
+Источник: скриншот пользователя «crypto life экарны.png» — img/cryptolife-figcraft.png.
+        </aside>
+      </section>
+
+      <!-- ======================= 5. ЧАТ ПИШЕТ КОД, РЕШЕНИЯ — МОИ ======================= -->
       <section>
         <h2>Чат пишет код. <span class="accent">Решения — мои.</span></h2>
         <div class="row behind">
@@ -270,7 +313,7 @@
         </aside>
       </section>
 
-      <!-- ======================= 4. АЙСБЕРГ ======================= -->
+      <!-- ======================= 6. АЙСБЕРГ ======================= -->
       <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
       <section class="s-berg">
         <div class="berg">
@@ -290,27 +333,27 @@
           <!-- слой 2: реклама -->
           <div class="tile fragment custom" data-fragment-index="2" style="left: 335px; top: 242px;"><span class="emo">📣</span>Google Ads</div>
           <div class="tile fragment custom" data-fragment-index="2" style="left: 505px; top: 242px;"><span class="emo">📣</span>Meta Ads</div>
-          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Наливать трафик</div>
+          <div class="tile fragment custom" data-fragment-index="2" style="left: 675px; top: 242px;"><span class="emo">🚰</span>Дистрибуция</div>
           <!-- слой 3: тест полного круга -->
           <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 352px;"><span class="emo">🔁</span>Тест полного круга</div>
           <!-- слой 4: юнит-экономика -->
           <div class="tile wide hot fragment custom" data-fragment-index="4" style="left: 475px; top: 462px;"><span class="emo">💰</span>Юнит-экономика</div>
           <!-- и всё по кругу -->
-          <div class="loop fragment custom" data-fragment-index="5"><span class="emo">🔄</span>налить<br>посчитать<br>поправить</div>
+          <div class="loop fragment custom" data-fragment-index="5"><span class="emo">🔄</span>сделал<br>протестировал<br>исправил<br>повторил</div>
 
           <div class="water"></div>
         </div>
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
 1. SDK, аналитика, атрибуция, MMP
-2. Реклама Google, Meta — наливать трафик
+2. Google Ads, Meta Ads, дистрибуция
 3. Тест полного круга — каждое событие реально доходит
 4. Юнит-экономика — посчитать
-5. И по кругу: налить, посчитать, поправить
+5. И по кругу: сделал → протестировал → исправил → повторил
         </aside>
       </section>
 
-      <!-- ======================= 5. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <!-- ======================= 7. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
       <section class="s-att">
         <div class="row att">
           <div class="words">
@@ -333,7 +376,7 @@
         </aside>
       </section>
 
-      <!-- ======================= 6. МОИ ПРИЛОЖЕНИЯ ======================= -->
+      <!-- ======================= 8. МОИ ПРИЛОЖЕНИЯ ======================= -->
       <section>
         <h2>Мои приложения</h2>
         <div class="row mine">
