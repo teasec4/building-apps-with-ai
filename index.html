@@ -126,16 +126,15 @@
     .water { position: absolute; left: 0; right: 0; top: 120px; height: 100%; z-index: 1;
       background: linear-gradient(rgba(20, 70, 120, .97), rgba(6, 26, 48, .99) 40%);
       border-top: 3px solid #7cc4ff; transition: transform 1.3s cubic-bezier(.6, .05, .25, 1); }
-    .s-berg[data-step="1"] .water { transform: translateY(140px); }
-    .s-berg[data-step="2"] .water { transform: translateY(255px); }
-    .s-berg[data-step="3"] .water { transform: translateY(370px); }
-    .s-berg[data-step="4"] .water { transform: translateY(480px); }
+    .s-berg[data-step="1"] .water { transform: translateY(160px); }
+    .s-berg[data-step="2"] .water { transform: translateY(310px); }
+    .s-berg[data-step="3"] .water { transform: translateY(470px); }
     .tile { position: absolute; z-index: 2; width: 150px; padding: 10px 6px 8px; box-sizing: border-box;
       background: #fff; color: #111; border-radius: 16px; text-align: center;
       box-shadow: 0 8px 22px rgba(0,0,0,.35); font-size: 0.34em; font-weight: 700; line-height: 1.15;
       opacity: 0; transform: translateY(14px) scale(.9); transition: all .5s ease .55s; }
     .tile .emo { display: block; font-size: 2.3em; line-height: 1.2; }
-    .tile.mid { width: 200px; }
+    .tile.mid { width: 200px; min-height: 106px; display: flex; flex-direction: column; justify-content: center; }
     .tile.wide { width: 230px; }
     .tile.hot { background: var(--accent); color: #fff; }
     .tile.visible { opacity: 1; transform: none; }
@@ -281,26 +280,23 @@
           <div class="tip"><span class="emo">📱</span>Приложение</div>
 
           <!-- слой 1: голому приложению нужно -->
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 274px; top: 140px;"><span class="emo">🖥️</span>Сервер</div>
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 490px; top: 140px;"><span class="emo">🧩</span>Интеграция SDK</div>
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 706px; top: 140px;"><span class="emo">📣</span>Рекламные интеграции</div>
-          <!-- слой 2: стор -->
-          <div class="tile wide fragment custom" data-fragment-index="2" style="left: 475px; top: 255px;"><span class="emo">🏪</span>Выкладка в&nbsp;App&nbsp;Store и&nbsp;Google&nbsp;Play</div>
-          <!-- слой 3: юнит-экономика -->
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 370px;"><span class="emo">💰</span>Юнит-экономика</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 274px; top: 150px;"><span class="emo">🖥️</span>Сервер</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 490px; top: 150px;"><span class="emo">📊</span>Рекламные и&nbsp;аналитические интеграции</div>
+          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 706px; top: 150px;"><span class="emo">🏪</span>Выкладка в&nbsp;App&nbsp;Store и&nbsp;Google&nbsp;Play</div>
+          <!-- слой 2: юнит-экономика -->
+          <div class="tile wide fragment custom" data-fragment-index="2" style="left: 475px; top: 305px;"><span class="emo">💰</span>Юнит-экономика</div>
           <!-- дно: дистрибуция и удержание -->
-          <div class="tile wide hot fragment custom" data-fragment-index="4" style="left: 235px; top: 485px;"><span class="emo">📡</span>Дистрибуция</div>
-          <div class="tile wide fragment custom" data-fragment-index="4" style="left: 475px; top: 485px;"><span class="emo">🧲</span>Удержание</div>
-          <div class="tile wide fragment custom" data-fragment-index="4" style="left: 715px; top: 485px;"><span class="emo">↩️</span>Возвращение</div>
+          <div class="tile wide hot fragment custom" data-fragment-index="3" style="left: 235px; top: 460px;"><span class="emo">📡</span>Дистрибуция</div>
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 460px;"><span class="emo">🧲</span>Удержание</div>
+          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
 
           <div class="water"></div>
         </div>
         <aside class="notes">
 Над водой — приложуха, она собирается быстро. Дальше каждый клик опускает воду:
-1. Голое приложение — это верхушка. Ему нужны сервер, интеграция SDK, рекламные интеграции
-2. Выкладка в App Store и Google Play
-3. Юнит-экономика
-4. На самом дне: дистрибуция, удержание, возвращение пользователей
+1. Голое приложение — это верхушка. Ему нужны сервер, рекламные и аналитические интеграции, выкладка в App Store и Google Play — это всё несложно
+2. Юнит-экономика
+3. На самом дне: дистрибуция, удержание, возвращение пользователей
 Код — только верхушка. Самое тяжёлое — на дне.
         </aside>
       </section>
@@ -351,7 +347,7 @@
     }).then(function () {
       if (document.documentElement.classList.contains('print-pdf')) {
         // В PDF показываем финальное состояние каждого слайда.
-        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 4; });
+        document.querySelectorAll('.s-berg').forEach(function (s) { s.dataset.step = 3; });
         document.querySelectorAll('.s-att').forEach(function (s) { s.dataset.step = 3; });
         placeEye();
       } else {
