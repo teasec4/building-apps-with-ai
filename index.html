@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Код — это верхушка айсберга · Максим, 2Speak</title>
+
+  <!-- Всё локально: никаких CDN. Шрифты темы встроены в CSS. -->
+  <link rel="stylesheet" href="reveal/dist/reset.css">
+  <link rel="stylesheet" href="reveal/dist/reveal.css">
+  <link rel="stylesheet" href="reveal/dist/theme/black.css">
+  <link rel="stylesheet" href="reveal/dist/plugin/highlight/monokai.css">
+
+  <style>
+    :root {
+      --r-background-color: #121417;
+      --r-main-font-size: 44px;
+      --r-heading1-size: 2.3em;
+      --r-heading2-size: 1.6em;
+      --r-link-color: #ff6b4a;
+      --r-code-font: "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+      --accent: #ff6b4a;
+      --ice: #dff3ff;
+      --sea: #0d3b66;
+      --ok: #4ade80;
+      --muted: #8b9098;
+      --card: #1c2026;
+      --line: #2c323b;
+    }
+
+    /* ---------- База ---------- */
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; letter-spacing: -0.015em; }
+    .reveal .accent { color: var(--accent); }
+    .reveal .muted { color: var(--muted); }
+    .reveal .small { font-size: 0.6em; }
+    .reveal .kicker {
+      font-size: 0.42em; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.4em; font-weight: 600;
+    }
+    .reveal .caption { font-size: 0.62em; color: var(--muted); margin-top: 0.8em; }
+    .reveal .big { font-size: 1.5em; font-weight: 700; line-height: 1.15; }
+    .reveal .row { display: flex; align-items: center; justify-content: center; gap: 28px; }
+    .reveal .arrow { color: var(--muted); font-size: 1.1em; }
+
+    /* Плавное появление снизу для обычных фрагментов */
+    .reveal .fragment.rise { transform: translateY(18px); transition: all .45s ease; }
+    .reveal .fragment.rise.visible { transform: none; }
+
+    /* Карточки */
+    .reveal .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+      padding: 26px 24px; box-sizing: border-box;
+    }
+    .reveal .card .label { font-size: 0.55em; margin-top: 16px; line-height: 1.25; }
+    .reveal .card .sub { font-size: 0.42em; color: var(--muted); margin-top: 6px; }
+
+    /* Заглушка под картинку/фото */
+    .reveal .ph {
+      border: 2px dashed #3a414c; border-radius: 16px; color: var(--muted);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-size: 0.45em; line-height: 1.4; box-sizing: border-box; padding: 16px;
+    }
+
+    /* ---------- 2. Эволюция ---------- */
+    .evo .card { width: 330px; height: 330px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; }
+    .evo svg { width: 150px; height: 150px; }
+    .keycap {
+      display: inline-block; font-family: var(--r-code-font); font-size: 0.5em;
+      padding: 8px 14px; border-radius: 10px; background: #2a2f37;
+      border: 1px solid #3a414c; border-bottom-width: 4px; margin: 4px;
+    }
+    .mini-chat { width: 100%; font-size: 0.38em; text-align: left; }
+    .mini-chat .b { padding: 8px 12px; border-radius: 12px; margin: 6px 0; max-width: 85%; }
+    .mini-chat .me { background: var(--accent); color: #fff; margin-left: auto; }
+    .mini-chat .ai { background: #2a2f37; }
+
+    /* ---------- 5. План Codex ---------- */
+    .term {
+      width: 760px; margin: 0 auto; text-align: left; font-family: var(--r-code-font);
+      font-size: 0.48em; background: #0b0d10; border: 1px solid var(--line); border-radius: 14px;
+      overflow: hidden;
+    }
+    .term .bar { background: #1c2026; padding: 10px 14px; display: flex; gap: 8px; }
+    .term .bar i { width: 12px; height: 12px; border-radius: 50%; background: #3a414c; display: block; }
+    .term .body { padding: 18px 24px; line-height: 1.6; }
+    .term .dim { color: var(--muted); }
+    .steps { margin-top: 28px; font-size: 0.7em; }
+    .steps .step { padding: 10px 22px; border-radius: 999px; border: 2px solid var(--line); }
+    .steps .step.go { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+
+    /* ---------- 6. Скелет ---------- */
+    .phone {
+      width: 230px; height: 430px; border: 3px solid #3a414c; border-radius: 34px;
+      padding: 30px 16px 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px;
+      background: #171a1f;
+    }
+    .phone .blk { border-radius: 10px; transition: all .7s ease; border: 2px solid transparent; }
+    .phone .h  { height: 26px; background: #e8e8e8; width: 70%; }
+    .phone .img{ height: 120px; background: linear-gradient(135deg, #ff6b4a, #ffb35c); }
+    .phone .t1 { height: 16px; background: #9aa0a8; }
+    .phone .t2 { height: 16px; background: #9aa0a8; width: 80%; }
+    .phone .btn{ height: 44px; background: var(--accent); margin-top: auto; }
+    .phone .nav{ height: 34px; background: #2a2f37; }
+    /* По клику экран "распадается" в каркас */
+    .wire.visible .blk { background: transparent !important; border: 2px dashed #6b7380; }
+    .navmap { display: grid; grid-template-columns: auto auto auto; gap: 18px 14px;
+      align-items: center; font-size: 0.42em; }
+    .navmap .node { border: 2px solid var(--accent); border-radius: 12px; padding: 10px 14px; }
+    .navmap .node.alt { border-color: #6b7380; color: #c9ced6; }
+
+    /* ---------- 7. Айсберг ---------- */
+    .berg { position: relative; width: 1120px; height: 580px; margin: 0 auto; overflow: hidden;
+      border-radius: 20px; background: linear-gradient(#1b2a3a 0, #22374c 25%); }
+    .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .berg .tip-label { position: absolute; left: 50%; top: 48px; transform: translateX(-50%);
+      font-size: 0.55em; font-weight: 700; color: #0b1a2a; background: var(--ice);
+      padding: 4px 14px; border-radius: 999px; }
+    .water {
+      position: absolute; left: 0; right: 0; top: 170px; bottom: 0;
+      background: linear-gradient(rgba(20, 70, 120, .96), rgba(6, 26, 48, .99));
+      border-top: 3px solid #7cc4ff; transition: transform 1.6s cubic-bezier(.6, .05, .25, 1);
+    }
+    .water.visible { transform: translateY(calc(100% - 36px)); }
+    .chip {
+      position: absolute; font-size: 0.42em; font-weight: 700; padding: 8px 16px;
+      border-radius: 12px; background: #fff; color: #111; box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      opacity: 0; transform: scale(.85); transition: all .5s ease;
+    }
+    .chips.visible .chip { opacity: 1; transform: none; }
+    .chips.visible .chip:nth-child(2) { transition-delay: .9s; }
+    .chips.visible .chip:nth-child(3) { transition-delay: 1.0s; }
+    .chips.visible .chip:nth-child(4) { transition-delay: 1.1s; }
+    .chips.visible .chip:nth-child(5) { transition-delay: 1.2s; }
+    .chips.visible .chip:nth-child(6) { transition-delay: 1.3s; }
+    .chips.visible .chip:nth-child(7) { transition-delay: 1.4s; }
+    .chips.visible .chip:nth-child(1) { transition-delay: .8s; }
+    .chip .tag { display: block; font-size: 0.7em; font-weight: 400; color: #555; }
+
+    /* ---------- 8. Шкала времени ---------- */
+    .timeline { width: 1080px; margin: 40px auto 0; text-align: left; }
+    .tl-bar { display: flex; height: 92px; border-radius: 14px; overflow: hidden; background: #1c2026; }
+    .tl-app { width: 16%; background: var(--ice); color: #0b1a2a; }
+    .tl-rest { width: 0; background: var(--accent); color: #fff; white-space: nowrap;
+      transition: width 1.6s cubic-bezier(.6, .05, .25, 1); }
+    .tl-rest.visible { width: 84%; }
+    .tl-bar > div { display: flex; align-items: center; padding: 0 18px; font-weight: 700; font-size: 0.55em;
+      box-sizing: border-box; overflow: hidden; }
+    .tl-bar > .tl-rest:not(.visible) { padding: 0; }
+    .tl-legend { display: flex; justify-content: space-between; margin-top: 14px; font-size: 0.45em; color: var(--muted); }
+
+    /* ---------- 9. Финиш → старт ---------- */
+    .flag-wrap { display: flex; align-items: flex-end; justify-content: center; gap: 40px; }
+    .flag-wrap svg { width: 260px; height: 300px; }
+    .flag-wrap svg .cloth { transform-origin: 30px 40px; animation: wave 2.4s ease-in-out infinite; }
+    @keyframes wave { 50% { transform: skewY(-3deg) scaleX(.97); } }
+    .flipword { position: relative; width: 420px; height: 150px; }
+    .flipword span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 2.1em; font-weight: 800; letter-spacing: .04em; }
+    .flipword .finish { transition: all .6s ease; }
+    .flipword .start  { opacity: 0; transform: rotateX(90deg); transition: all .6s ease .35s; color: var(--ok); }
+    .flipword.visible .finish { opacity: 0; transform: rotateX(-90deg); }
+    .flipword.visible .start  { opacity: 1; transform: none; }
+    .pipeline { font-size: 0.55em; margin-bottom: 30px; }
+    .pipeline .ok { color: var(--ok); }
+
+    /* ---------- 10. 80% ---------- */
+    .loadbar { width: 980px; height: 64px; margin: 50px auto 16px; border-radius: 999px;
+      background: #1c2026; border: 2px solid var(--line); overflow: hidden; position: relative; }
+    .loadbar .fill { height: 100%; width: 0; border-radius: 999px;
+      background: repeating-linear-gradient(-45deg, #ff6b4a 0 22px, #ff8566 22px 44px); }
+    .present .loadbar .fill { animation: load 2.6s cubic-bezier(.2, .8, .3, 1) forwards, stuck 1.2s 2.8s ease-in-out infinite; }
+    @keyframes load { 0% { width: 0 } 60% { width: 72% } 100% { width: 80% } }
+    @keyframes stuck { 50% { filter: brightness(.65); } }
+    .pct { font-size: 1.6em; font-weight: 800; opacity: 0; }
+    .present .pct { animation: show .4s 2.4s forwards; }
+    @keyframes show { to { opacity: 1; } }
+    html.print-pdf .loadbar .fill { width: 80%; animation: none; }
+    html.print-pdf .pct { opacity: 1; animation: none; }
+
+    /* ---------- 11. Пёс ---------- */
+    .dog { position: relative; width: 420px; height: 300px; margin: 10px auto 0; }
+    .dog .d { position: absolute; left: 30px; bottom: 30px; font-size: 220px; line-height: 1; transform: scaleX(-1); }
+    .dog .l { position: absolute; right: 30px; bottom: 10px; font-size: 170px; line-height: 1; }
+
+    /* ---------- 12–14. Вывод ---------- */
+    .chain .card { width: 300px; min-height: 190px; display: flex; flex-direction: column; justify-content: center; }
+    .chain .card .v { font-size: 1.15em; font-weight: 800; }
+    .chain .card.hot { border-color: var(--accent); }
+    .formula { font-size: 1.05em; font-weight: 800; }
+    .formula .term-f { display: inline-block; padding: 6px 18px; border-radius: 14px; background: var(--card);
+      border: 1px solid var(--line); margin: 0 4px; }
+    .reveal .row.stats { gap: 110px; }
+    .stat .n { font-size: 3.4em; font-weight: 800; line-height: 1; }
+    .stat .t { font-size: 0.5em; color: var(--muted); }
+    .quote { font-size: 0.95em; line-height: 1.35; max-width: 1000px; margin: 40px auto 0; }
+
+    /* ---------- 15. Финал ---------- */
+    .photo { width: 640px; height: 380px; margin: 10px auto 0; }
+    /* Когда появится фото: замените .ph на <img src="img/anton.jpg" class="photo-img"> */
+    .reveal img.photo-img { width: 640px; height: 380px; object-fit: cover; border-radius: 16px; margin: 10px auto 0; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ======================= 0. ТИТУЛ ======================= -->
+      <section>
+        <h1>Код — это<br>верхушка <span class="accent">айсберга</span></h1>
+        <p class="muted">Максим · 2Speak</p>
+        <aside class="notes">
+          Повесить, пока зал рассаживается. Первая фраза — со следующего слайда.
+        </aside>
+      </section>
+
+      <!-- ======================= 1. ВСТУПЛЕНИЕ (1:30) ======================= -->
+      <section>
+        <div class="kicker">01 · Как изменилась разработка</div>
+        <h2>Год назад я не писал код</h2>
+        <div class="row evo" style="margin-top: 30px;">
+          <!-- Картинки можно заменить своими: <img src="img/...png"> внутри .card -->
+          <div class="card fragment rise">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <path d="M10 28 Q35 18 60 30 Q85 18 110 28 V96 Q85 86 60 98 Q35 86 10 96 Z" fill="#2a2f37" stroke="#dfe3e8" stroke-width="3"/>
+              <path d="M60 30 V98" stroke="#dfe3e8" stroke-width="3"/>
+              <path d="M22 44 H48 M22 56 H48 M22 68 H44 M72 44 H98 M72 56 H98 M72 68 H92" stroke="#8b9098" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div class="label">Учебник</div>
+            <div class="sub">сел учить код сам</div>
+          </div>
+          <div class="arrow fragment rise">→</div>
+          <div class="card fragment rise">
+            <div>
+              <span class="keycap">Ctrl</span>+<span class="keycap">C</span><br>
+              <span class="keycap">Ctrl</span>+<span class="keycap">V</span>
+            </div>
+            <div class="label">Копипаст из ChatGPT</div>
+            <div class="sub">кривые проекты</div>
+          </div>
+          <div class="arrow fragment rise">→</div>
+          <div class="card fragment rise">
+            <div class="mini-chat">
+              <div class="b me">Сделай экран урока</div>
+              <div class="b ai">План: 3 шага. Делаю?</div>
+              <div class="b me">Делай</div>
+            </div>
+            <div class="label">Говорю — Codex делает</div>
+            <div class="sub">иногда даже без редактора</div>
+          </div>
+        </div>
+        <aside class="notes">
+[НАИЗУСТЬ — первая фраза: ...]
+
+- Год назад не работал в разработке, сел учить код (клик: учебник)
+- Пока учил, появились AI-шки
+- Этап 1: Ctrl+C / Ctrl+V из ChatGPT, кривые проекты (клик)
+- Этап 2: революция — просто говоришь, и всё делается, ни строчки кода,
+  иногда даже редактор не открываю (клик)
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">01 · Как изменилась разработка</div>
+        <h2>Чат пишет код.<br><span class="accent">Решения — мои.</span></h2>
+        <p class="fragment rise caption" style="font-size: 0.7em;">Разбираться в архитектуре всё равно надо</p>
+        <aside class="notes">
+- Но: решения принимаю я, а не чат за меня
+- Минимально разбираться в архитектуре всё равно надо (клик)
+        </aside>
+      </section>
+
+      <!-- ======================= 2. КОД БОЛЬШЕ НЕ ПРОБЛЕМА (1:30) ======================= -->
+      <section>
+        <div class="kicker">02 · Код больше не проблема</div>
+        <p class="big">Codex решает задачи<br>уровня <span class="accent">сеньора</span></p>
+        <aside class="notes">
+- Codex сейчас решает задачи уровня сеньора
+- [пример задачи, которую он закрыл сам]
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">02 · Код больше не проблема</div>
+        <h2>Сначала план</h2>
+        <!-- Можно заменить реальным скриншотом: <img src="img/codex-plan.png"> -->
+        <div class="term">
+          <div class="bar"><i></i><i></i><i></i></div>
+          <div class="body">
+            <span class="dim">codex ›</span> План<br>
+            1. Экран урока: Route + ViewModel<br>
+            2. Модель упражнения в domain<br>
+            3. Тесты на правила<br>
+            <span class="dim">Начать? [y/n]</span>
+          </div>
+        </div>
+        <div class="row steps">
+          <div class="step fragment rise">Читаю</div>
+          <div class="arrow fragment rise">→</div>
+          <div class="step fragment rise">Проверяю</div>
+          <div class="arrow fragment rise">→</div>
+          <div class="step go fragment rise">«Делай, тварь»</div>
+        </div>
+        <aside class="notes">
+- Главное открытие: сначала читаю его план и проверяю
+- Только потом «делай, тварь» (три клика)
+- [скрин реального плана → img/codex-plan.png]
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">02 · Код больше не проблема</div>
+        <h2>Начинать со скелета</h2>
+        <div class="row" style="gap: 70px; margin-top: 10px;">
+          <div class="phone fragment custom wire" data-fragment-index="1">
+            <div class="blk h"></div>
+            <div class="blk img"></div>
+            <div class="blk t1"></div>
+            <div class="blk t2"></div>
+            <div class="blk btn"></div>
+            <div class="blk nav"></div>
+          </div>
+          <div class="navmap fragment rise" data-fragment-index="2">
+            <div class="node">Home</div><div class="arrow">→</div><div class="node">Урок</div>
+            <div></div><div></div><div class="arrow" style="text-align:center">↓</div>
+            <div class="node alt">Настройки</div><div class="arrow">←</div><div class="node">Результат</div>
+          </div>
+        </div>
+        <p class="caption fragment rise" data-fragment-index="3">Экраны — быстрые HTML-прототипы</p>
+        <aside class="notes">
+- Начинать со скелета: навигация и структура экранов
+- Клик: экран распадается в каркас. Клик: карта навигации
+- Экраны быстро прикидываю в HTML-прототипах (клик)
+        </aside>
+      </section>
+
+      <!-- ======================= 3. АЙСБЕРГ (3:00) ======================= -->
+      <section>
+        <div class="kicker">03 · Айсберг</div>
+        <div class="berg">
+          <svg class="ice" viewBox="0 0 1120 580" aria-hidden="true">
+            <!-- верхушка -->
+            <path d="M505 170 L535 110 L560 70 L590 105 L612 95 L640 170 Z" fill="#eef8ff"/>
+            <path d="M560 70 L590 105 L575 170 L535 170 Z" fill="#cfe7f7"/>
+            <!-- подводная часть -->
+            <path d="M505 170 L640 170 L760 230 L870 330 L830 450 L700 540 L470 555 L320 470 L270 340 L360 240 Z" fill="#b9dcf2"/>
+            <path d="M640 170 L760 230 L870 330 L830 450 L700 540 L620 400 Z" fill="#9ccbe8"/>
+          </svg>
+          <div class="tip-label">Приложение</div>
+
+          <div class="chips fragment custom" data-fragment-index="1">
+            <div class="chip" style="left: 90px;  top: 230px;">Сервер<span class="tag">синхронизация</span></div>
+            <div class="chip" style="left: 860px; top: 215px;">SDK<span class="tag">десятки зависимостей</span></div>
+            <div class="chip" style="left: 150px; top: 380px;">Аналитика<span class="tag">события, воронки</span></div>
+            <div class="chip" style="left: 900px; top: 360px;">Google<span class="tag">Firebase, Ads</span></div>
+            <div class="chip" style="left: 400px; top: 300px;">Meta<span class="tag">SDK, атрибуция</span></div>
+            <div class="chip" style="left: 620px; top: 300px;">MMP<span class="tag">AppsFlyer / Adjust</span></div>
+            <div class="chip" style="left: 440px; top: 460px; background: var(--accent); color: #fff;">Тест полного круга<span class="tag" style="color:#ffe1d9">каждое событие доходит</span></div>
+          </div>
+
+          <!-- Вода: по клику опускается -->
+          <div class="water fragment custom" data-fragment-index="1"></div>
+        </div>
+        <p class="caption fragment rise" data-fragment-index="2" style="font-size: 0.65em; color: #fff;">
+          Сделать из приложения <span class="accent">живой отслеживаемый продукт</span> — вот что долго
+        </p>
+        <aside class="notes">
+- Над водой: само приложение собирается быстро
+- КЛИК — вода опускается
+- Под водой: синхронизация с сервером, SDK
+- Аналитика, сервисы Google, Meta, MMP
+- Тестировать полный круг: каждое событие должно реально доходить
+- КЛИК — превратить приложение в живой отслеживаемый продукт — вот что долго
+(логотипы вместо плашек — положить в img/ и заменить .chip на &lt;img&gt;)
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">03 · Айсберг</div>
+        <h2>Куда уходит время</h2>
+        <div class="timeline">
+          <div class="tl-bar">
+            <div class="tl-app">Приложение</div>
+            <div class="tl-rest fragment custom">Интеграции, SDK, аналитика, тесты</div>
+          </div>
+          <div class="tl-legend">
+            <span>[~2 недели]</span>
+            <span class="fragment rise">[~2–3 месяца]</span>
+          </div>
+        </div>
+        <aside class="notes">
+- Шкала времени: «приложение» — маленький кусок
+- КЛИК — «интеграции и тесты» — большой
+- [свои реальные сроки вместо плейсхолдеров]
+        </aside>
+      </section>
+
+      <!-- ======================= 4. СТОР (1:00) ======================= -->
+      <section>
+        <div class="kicker">04 · Стор</div>
+        <div class="row pipeline">
+          <span>Подал <span class="ok">✓</span></span><span class="arrow">→</span>
+          <span>Ревью <span class="ok">✓</span></span><span class="arrow">→</span>
+          <span>Вышло <span class="ok">✓</span></span>
+        </div>
+        <div class="flag-wrap">
+          <svg viewBox="0 0 260 300" aria-hidden="true">
+            <defs>
+              <pattern id="check" width="40" height="40" patternUnits="userSpaceOnUse">
+                <rect width="40" height="40" fill="#f5f5f5"/>
+                <rect width="20" height="20" fill="#111"/><rect x="20" y="20" width="20" height="20" fill="#111"/>
+              </pattern>
+            </defs>
+            <rect x="22" y="30" width="10" height="265" rx="4" fill="#8b9098"/>
+            <g class="cloth"><path d="M32 40 Q110 20 240 48 L240 168 Q120 140 32 160 Z" fill="url(#check)" stroke="#dfe3e8" stroke-width="2"/></g>
+          </svg>
+          <div class="flipword fragment custom">
+            <span class="finish">ФИНИШ</span>
+            <span class="start">СТАРТ</span>
+          </div>
+        </div>
+        <p class="caption fragment rise">Работа только начинается</p>
+        <aside class="notes">
+- Подал, прошёл ревью, приложение вышло
+- КЛИК — финиш превращается в старт
+- И работа только начинается
+        </aside>
+      </section>
+
+      <!-- ======================= 5. НЕ СДАВАЙСЯ (1:00) ======================= -->
+      <section>
+        <div class="kicker">05 · Не сдавайся</div>
+        <h2>Большинство AI-проектов<br>умирают здесь</h2>
+        <div class="loadbar"><div class="fill"></div></div>
+        <div class="pct accent">80%</div>
+        <p class="fragment rise" style="font-size: 0.75em; margin-top: 20px;">Проверять · Повторять · <span class="accent">Доделывать</span></p>
+        <aside class="notes">
+- Полоска сама доезжает до 80% и застревает
+- Большинство AI-проектов умирают на 80%
+- КЛИК — проверять, повторять, доделывать до конца
+        </aside>
+      </section>
+
+      <!-- ======================= 6. ВЫВОД (1:30) ======================= -->
+      <section>
+        <div class="kicker">06 · Вывод</div>
+        <h2>Собрать продукт сейчас<br>может любой пёс</h2>
+        <!-- Можно заменить фото: <img src="img/dog.jpg"> -->
+        <div class="dog" role="img" aria-label="Собака за ноутбуком">
+          <span class="d">🐕</span><span class="l">💻</span>
+        </div>
+        <aside class="notes">
+- Собрать продукт сейчас может любой пёс
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">06 · Вывод</div>
+        <h2>Что подорожало</h2>
+        <div class="row chain" style="margin-top: 30px;">
+          <div class="card fragment rise"><div class="v">Код</div><div class="sub">почти бесплатный</div></div>
+          <div class="arrow fragment rise">→</div>
+          <div class="card fragment rise"><div class="v">Миллионы</div><div class="sub">приложений в сторах</div></div>
+          <div class="arrow fragment rise">→</div>
+          <div class="card hot fragment rise"><div class="v accent">Внимание</div><div class="sub">вот что теперь дорого</div></div>
+        </div>
+        <aside class="notes">
+- Код стал почти бесплатным (клик)
+- → в сторах миллионы приложений (клик)
+- Дорогое теперь — внимание пользователя (клик)
+        </aside>
+      </section>
+
+      <section>
+        <div class="kicker">06 · Вывод</div>
+        <h2>Дистрибуция =</h2>
+        <p class="formula">
+          <span class="term-f fragment rise">навык</span>
+          <span class="fragment rise">+ <span class="term-f">мозги</span></span>
+          <span class="fragment rise">+ <span class="term-f accent">деньги</span></span>
+        </p>
+        <aside class="notes">
+- Дистрибуция = навык + мозги + деньги (три клика)
+        </aside>
+      </section>
+
+      <section>
+        <div class="row stats">
+          <div class="stat"><div class="n">2</div><div class="t">стора</div></div>
+          <div class="stat"><div class="n accent">0</div><div class="t">дохода. Пока.</div></div>
+        </div>
+        <p class="quote fragment rise">«Я знаю, о чём говорю»</p>
+        <aside class="notes">
+[НАИЗУСТЬ — последняя фраза вывода:]
+«У меня приложение в двух сторах и пока ноль дохода — я знаю, о чём говорю»
+        </aside>
+      </section>
+
+      <!-- ======================= 7. ФИНАЛ (0:30) ======================= -->
+      <section>
+        <h2>Спасибо, <span class="accent">Антон</span>!</h2>
+        <!-- Фото: положите img/anton.jpg и замените div ниже на
+             <img src="img/anton.jpg" class="photo-img" alt="Максим и Антон"> -->
+        <div class="ph photo">[общее фото с Антоном<br>img/anton.jpg]</div>
+        <p style="margin-top: 26px;">Вопросы?</p>
+        <aside class="notes">
+- Спасибо Антону, что взял в команду
+- Вопросы
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="reveal/dist/reveal.js"></script>
+  <script src="reveal/dist/plugin/notes.js"></script>
+  <script src="reveal/dist/plugin/highlight.js"></script>
+  <script>
+    Reveal.initialize({
+      width: 1280,
+      height: 720,
+      margin: 0.04,
+      hash: true,
+      slideNumber: 'c/t',
+      transition: 'fade',
+      center: true,
+      plugins: [RevealNotes, RevealHighlight]
+    });
+  </script>
+</body>
+</html>
