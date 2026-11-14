@@ -66,14 +66,16 @@
     .reveal .store-badge.google-play img { height: 95.24px; }
 
     /* ---------- 2–3. Мои решения → работа АИ ---------- */
-    .comparison { width: 1160px; margin: 0 auto; text-align: left; }
+    .comparison { width: 1160px; height: 360px; margin: 0 auto; text-align: left; }
     .comparison-head, .comparison-pair { display: grid; grid-template-columns: 1fr 32px 1fr;
       column-gap: 28px; align-items: center; }
-    .comparison-head { padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .comparison-head { min-height: 72px; box-sizing: border-box;
+      padding-bottom: 16px; border-bottom: 1px solid var(--line); }
     .reveal .comparison-head h2 { margin: 0; font-size: 1.05em; line-height: 1.2;
       text-transform: uppercase; }
     .comparison-head .ai-heading { grid-column: 3; color: var(--accent); }
-    .comparison-pair { padding: 36px 0; border-bottom: 1px solid var(--line); }
+    .comparison-pair { min-height: 240px; box-sizing: border-box;
+      padding: 36px 0; border-bottom: 1px solid var(--line); }
     .comparison-action { font-size: 0.95em; font-weight: 600; line-height: 1.2; }
     .comparison-detail { font-size: 0.66em; line-height: 1.25; color: #b1b7c0; margin-top: 14px; }
     .comparison-pair .arrow { font-size: 0.8em; text-align: center; }
@@ -204,13 +206,13 @@
       </section>
 
       <!-- ======================= 2. АРХИТЕКТУРА → КОД ======================= -->
-      <section>
+      <section data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <div class="comparison-head">
+          <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
           </div>
-          <div class="comparison-pair fragment rise" data-fragment-index="1">
+          <div class="comparison-pair" data-id="comparison-architecture">
             <div class="comparison-human">
               <div class="comparison-action">Принимаю архитектурные решения</div>
               <div class="comparison-detail">Описываю данные и&nbsp;дата-флоу</div>
@@ -223,18 +225,18 @@
         </div>
         <aside class="notes">
 Я принимаю архитектурные решения, описываю данные и дата-флоу. АИ пишет код.
-Клик раскрывает противопоставление целиком.
+Шапка остаётся на месте. Следующий клик меняет противопоставление под ней.
         </aside>
       </section>
 
       <!-- ======================= 3. ПРОДУКТОВЫЙ ФЛОУ → ПРОТОТИПЫ ======================= -->
-      <section>
+      <section data-auto-animate data-auto-animate-duration="0.35">
         <div class="comparison">
-          <div class="comparison-head">
+          <div class="comparison-head" data-id="comparison-header">
             <h2>Что делаю я</h2>
             <h2 class="ai-heading">Что делает АИ</h2>
           </div>
-          <div class="comparison-pair fragment rise" data-fragment-index="1">
+          <div class="comparison-pair" data-id="comparison-product">
             <div class="comparison-human">
               <div class="comparison-action">Определяю продуктовый флоу</div>
               <div class="comparison-detail">Выбираю и&nbsp;корректирую варианты</div>
@@ -249,7 +251,7 @@
         <aside class="notes">
 Я определяю продуктовый флоу, рассматриваю варианты экранов, выбираю и корректирую их.
 АИ переносит флоу в редактор и прототипирует экраны.
-Клик раскрывает противопоставление целиком. Дальше — отдельный слайд с картой Crypto Life.
+Шапка остаётся на месте при смене противопоставления. Дальше — отдельный слайд с картой Crypto Life.
         </aside>
       </section>
 
