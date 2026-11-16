@@ -94,7 +94,7 @@
     .s-proc:has(.proc-caption.visible) .step { border-color: var(--accent); }
     .reveal .proc-caption { font-size: 0.66em; font-weight: 700; margin-top: 18px; }
 
-    /* ---------- 4. Код дешёвый, внимание дорогое ---------- */
+    /* ---------- 5. Код дешёвый, внимание дорогое ---------- */
     .reveal .row.att { gap: 50px; align-items: center; }
     .words { width: 470px; text-align: left; }
     .words .w { font-size: 0.95em; font-weight: 700; margin: 0 0 26px; line-height: 1.15; }
@@ -115,7 +115,7 @@
     .eye { position: absolute; font-size: 54px; opacity: 0; transition: opacity .5s ease .4s; pointer-events: none; }
     .s-att[data-step="2"] .eye, .s-att[data-step="3"] .eye { opacity: 1; }
 
-    /* ---------- 5. Айсберг: вода опускается по шагам ---------- */
+    /* ---------- 4. Айсберг: вода опускается по шагам ---------- */
     .berg { position: relative; width: 1180px; height: 640px; margin: 0 auto; overflow: hidden;
       border-radius: 22px; background: linear-gradient(#1b2a3a, #22374c 22%); }
     .berg svg.ice { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -215,7 +215,7 @@
           </div>
           <div class="phase">
             <div class="phase-name">Запуск</div>
-            <div class="step fragment" data-fragment-index="15"><span>Контент для сторов и&nbsp;описание</span><span class="who-set"><span data-fragment-index="15" class="fragment who ai">ИИ</span></span></div>
+            <div class="step fragment" data-fragment-index="15"><span>Контент для сторов и&nbsp;описание</span><span class="who-set"><span data-fragment-index="15" class="fragment who ai">ИИ</span><span data-fragment-index="16" class="fragment who me" title="я">👤</span></span></div>
           </div>
         </div>
         <p class="proc-caption fragment rise" data-fragment-index="18">Всё это может сделать <span class="accent">ИИ</span></p>
@@ -232,34 +232,12 @@
 - Тестирование: я → ИИ
 - Локализация: ИИ
 ЗАПУСК
-- Контент для сторов и описание: ИИ
+- Контент для сторов и описание: ИИ → я
 Последний клик: человечки гаснут, остаётся ИИ — «Всё это может сделать ИИ».
         </aside>
       </section>
 
-      <!-- ======================= 4. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
-      <section class="s-att">
-        <div class="row att">
-          <div class="words">
-            <p class="w">Код <span class="accent">≈ 0</span></p>
-            <p class="w fragment rise" data-fragment-index="1">Приложений — миллионы</p>
-            <p class="w fragment rise" data-fragment-index="2">Внимание людей — <span class="accent">дорого</span></p>
-            <p class="w dist fragment rise" data-fragment-index="3">Дистрибуция</p>
-          </div>
-          <div class="field">
-            <div class="grid" id="appgrid"></div>
-            <div class="eye emo" id="appeye">👁</div>
-          </div>
-        </div>
-        <aside class="notes">
-- Код стал почти бесплатным — вот твоя приложуха (одна иконка)
-- Клик: приложух миллионы — приложуху теперь может написать кто угодно
-- Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
-- Клик: это и называется дистрибуция
-        </aside>
-      </section>
-
-      <!-- ======================= 5. АЙСБЕРГ ======================= -->
+      <!-- ======================= 4. АЙСБЕРГ ======================= -->
       <!-- Каждый клик опускает воду на один слой. Эмодзи — временные, заменим картинками. -->
       <section class="s-berg">
         <div class="berg">
@@ -293,13 +271,35 @@
         </aside>
       </section>
 
+      <!-- ======================= 5. КОД ДЕШЁВЫЙ, ВНИМАНИЕ ДОРОГОЕ ======================= -->
+      <section class="s-att">
+        <div class="row att">
+          <div class="words">
+            <p class="w">Код <span class="accent">≈ 0</span></p>
+            <p class="w fragment rise" data-fragment-index="1">Приложений — миллионы</p>
+            <p class="w fragment rise" data-fragment-index="2">Внимание людей — <span class="accent">дорого</span></p>
+            <p class="w dist fragment rise" data-fragment-index="3">Дистрибуция</p>
+          </div>
+          <div class="field">
+            <div class="grid" id="appgrid"></div>
+            <div class="eye emo" id="appeye">👁</div>
+          </div>
+        </div>
+        <aside class="notes">
+- Код стал почти бесплатным — вот твоя приложуха (одна иконка)
+- Клик: приложух миллионы — приложуху теперь может написать кто угодно
+- Клик: а внимание людей — дорого (все гаснут, твою кто-то увидел)
+- Клик: это и называется дистрибуция
+        </aside>
+      </section>
+
     </div>
   </div>
 
   <script src="reveal/dist/reveal.js"></script>
   <script src="reveal/dist/plugin/notes.js"></script>
   <script>
-    // Сетка одинаковых приложений для слайда 4; одно из них — «моё».
+    // Сетка одинаковых приложений для слайда 5; одно из них — «моё».
     (function () {
       var grid = document.getElementById('appgrid');
       var mine = 53;
