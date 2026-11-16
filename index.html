@@ -138,6 +138,57 @@
     .tile.hot { background: var(--accent); color: #fff; }
     .tile.visible { opacity: 1; transform: none; }
 
+    @media screen and (max-width: 700px) {
+      :root { --r-main-font-size: 56px; }
+
+      .reveal h2 { font-size: 0.78em; margin-bottom: 12px; }
+
+      .then-now { width: 640px; transform: none; }
+      .then-now .tn { display: block; margin: 36px 0; }
+      .then-now .when { display: block; width: auto; font-size: 1.05em; text-align: left; }
+      .then-now .what { display: block; margin-top: 10px; font-size: 1.12em; }
+
+      .reveal .row.apps { flex-direction: column; align-items: center; gap: 16px; margin-top: 0; }
+      .apps .store-col { width: 640px; gap: 8px; }
+      .apps .store-col .store-badge { height: 44px; margin: 0 auto 2px; }
+      .reveal .store-badge img,
+      .reveal .store-badge.google-play img { height: 54px; }
+      .store-badge.google-play { width: 190px; }
+      .apps .app-row { gap: 16px; padding: 10px 14px; }
+      .apps .app-row .icon { width: 76px; height: 76px; border-radius: 16px; }
+      .apps .app-row b { font-size: 0.7em; }
+
+      .proc { grid-template-columns: 1fr; gap: 8px; width: 640px; margin: 8px auto 0; }
+      .proc .phase-name { font-size: 0.48em; padding-bottom: 5px; margin-bottom: 6px; border-bottom-width: 2px; }
+      .proc .step { min-height: 48px; padding: 7px 10px; margin-bottom: 6px; font-size: 0.52em; }
+      .proc .who-set { gap: 4px; }
+      .proc .who { height: 28px; min-width: 28px; padding: 0 6px; }
+      .reveal .proc-caption { margin-top: 8px; font-size: 0.58em; }
+
+      .berg { width: 640px; height: 1000px; border-radius: 16px; }
+      .berg .tip { left: 30px; top: 18px; font-size: 0.7em; }
+      .berg .tile { width: 280px; min-height: 180px; padding: 10px 12px; font-size: 0.52em; overflow-wrap: anywhere; }
+      .berg .tile.mid { width: 280px; min-height: 180px; }
+      .berg .tile.wide { width: 280px; min-height: 170px; }
+      .berg .tile-server { left: 20px !important; top: 132px !important; }
+      .berg .tile-integrations { left: 330px !important; top: 132px !important; }
+      .berg .tile-stores { left: 20px !important; top: 342px !important; }
+      .berg .tile-economy { left: 330px !important; top: 342px !important; }
+      .berg .tile-distribution { left: 20px !important; top: 552px !important; }
+      .berg .tile-retention { left: 330px !important; top: 552px !important; }
+      .berg .tile-return { left: 175px !important; top: 762px !important; }
+      .water { top: 90px; }
+      .s-berg[data-step="1"] .water { transform: translateY(170px); }
+      .s-berg[data-step="2"] .water { transform: translateY(400px); }
+      .s-berg[data-step="3"] .water { transform: translateY(760px); }
+
+      .reveal .row.att { flex-direction: column; align-items: stretch; gap: 8px; }
+      .words { width: 640px; }
+      .words .w { margin-bottom: 12px; font-size: 0.72em; }
+      .words .w.dist { margin-top: 4px; font-size: 1em; }
+      .field { width: 640px; height: 640px; }
+    }
+
   </style>
 </head>
 <body>
@@ -250,15 +301,15 @@
           <div class="tip"><span class="emo">📱</span>Приложение</div>
 
           <!-- слой 1: голому приложению нужно -->
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 274px; top: 150px;"><span class="emo">🖥️</span>Сервер</div>
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 490px; top: 150px;"><span class="emo">📊</span>Рекламные и&nbsp;аналитические интеграции</div>
-          <div class="tile mid fragment custom" data-fragment-index="1" style="left: 706px; top: 150px;"><span class="emo">🏪</span>Выкладка в&nbsp;App&nbsp;Store и&nbsp;Google&nbsp;Play</div>
+          <div class="tile mid tile-server fragment custom" data-fragment-index="1" style="left: 274px; top: 150px;"><span class="emo">🖥️</span>Сервер</div>
+          <div class="tile mid tile-integrations fragment custom" data-fragment-index="1" style="left: 490px; top: 150px;"><span class="emo">📊</span>Рекламные и&nbsp;аналитические интеграции</div>
+          <div class="tile mid tile-stores fragment custom" data-fragment-index="1" style="left: 706px; top: 150px;"><span class="emo">🏪</span>Выкладка в&nbsp;App&nbsp;Store и&nbsp;Google&nbsp;Play</div>
           <!-- слой 2: юнит-экономика -->
-          <div class="tile wide fragment custom" data-fragment-index="2" style="left: 475px; top: 305px;"><span class="emo">💰</span>Юнит-экономика</div>
+          <div class="tile wide tile-economy fragment custom" data-fragment-index="2" style="left: 475px; top: 305px;"><span class="emo">💰</span>Юнит-экономика</div>
           <!-- дно: дистрибуция и удержание -->
-          <div class="tile wide hot fragment custom" data-fragment-index="3" style="left: 235px; top: 460px;"><span class="emo">📡</span>Дистрибуция</div>
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 475px; top: 460px;"><span class="emo">🧲</span>Удержание</div>
-          <div class="tile wide fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
+          <div class="tile wide hot tile-distribution fragment custom" data-fragment-index="3" style="left: 235px; top: 460px;"><span class="emo">📡</span>Дистрибуция</div>
+          <div class="tile wide tile-retention fragment custom" data-fragment-index="3" style="left: 475px; top: 460px;"><span class="emo">🧲</span>Удержание</div>
+          <div class="tile wide tile-return fragment custom" data-fragment-index="3" style="left: 715px; top: 460px;"><span class="emo">↩️</span>Возвращение</div>
 
           <div class="water"></div>
         </div>
@@ -327,9 +378,18 @@
       if (slide.classList.contains('s-att')) placeEye(); // размеры есть только у видимого слайда
     }
 
+    function isPortraitPhone() {
+      return window.matchMedia('(max-width: 700px)').matches;
+    }
+
+    function slideSize() {
+      return isPortraitPhone()
+        ? { width: 720, height: 1280 }
+        : { width: 1280, height: 720 };
+    }
+
     Reveal.initialize({
-      width: 1280,
-      height: 720,
+      ...slideSize(),
       margin: 0.04,
       hash: true,
       slideNumber: 'c/t',
@@ -345,6 +405,9 @@
       } else {
         syncStep();
       }
+    });
+    window.matchMedia('(max-width: 700px)').addEventListener('change', function () {
+      Reveal.configure(slideSize());
     });
     ['slidechanged', 'fragmentshown', 'fragmenthidden'].forEach(function (e) { Reveal.on(e, syncStep); });
   </script>
