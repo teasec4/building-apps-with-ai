@@ -2,4 +2,4 @@
 
 Доклад о моих приложениях и разработке с ИИ. Ханчжоу, 15 ноября 2026 года.
 
-[Открыть презентацию](https://teasec4.github.io/max-presentation/) · [2Speak](https://2speak.app/)
+[Открыть презентацию](https://teasec4.github.io/building-apps-with-ai/) · [2Speak](https://2speak.app/)
